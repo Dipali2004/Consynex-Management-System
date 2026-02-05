@@ -1,0 +1,66 @@
+CREATE DATABASE IF NOT EXISTS training_app CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+USE training_app;
+
+CREATE TABLE IF NOT EXISTS banners (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  title VARCHAR(255) NOT NULL,
+  image_path VARCHAR(512) NOT NULL,
+  link_url VARCHAR(512) DEFAULT NULL,
+  status TINYINT(1) NOT NULL DEFAULT 1,
+  sort_order INT NOT NULL DEFAULT 0,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS courses (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(255) NOT NULL,
+  slug VARCHAR(255) NOT NULL UNIQUE,
+  duration VARCHAR(100) DEFAULT NULL,
+  level VARCHAR(32) DEFAULT NULL,
+  image_path VARCHAR(512) DEFAULT NULL,
+  fees VARCHAR(100) DEFAULT NULL,
+  description TEXT,
+  status TINYINT(1) NOT NULL DEFAULT 1,
+  featured TINYINT(1) NOT NULL DEFAULT 0,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS training_programs (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(255) NOT NULL,
+  slug VARCHAR(255) NOT NULL UNIQUE,
+  description TEXT,
+  status TINYINT(1) NOT NULL DEFAULT 1,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS pages (
+  key_name VARCHAR(64) PRIMARY KEY,
+  title VARCHAR(255) NOT NULL,
+  content TEXT,
+  data_json TEXT
+) ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS enquiries (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(255) NOT NULL,
+  email VARCHAR(255) NOT NULL,
+  phone VARCHAR(50) DEFAULT NULL,
+  message TEXT NOT NULL,
+  source VARCHAR(64) NOT NULL,
+  status VARCHAR(32) NOT NULL DEFAULT 'new',
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS admin_users (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  username VARCHAR(64) NOT NULL UNIQUE,
+  password_hash VARCHAR(255) NOT NULL,
+  active TINYINT(1) NOT NULL DEFAULT 1,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB;
+
+-- Default Admin User
+-- Username: admin
+-- Password: admin123
+-- Note: The application will automatically create this user if it doesn't exist upon first login attempt.

@@ -1,0 +1,4 @@
+[08-Feb-2026 03:30:59 Europe/Berlin] PHP Fatal error:  Uncaught Error: Class "TrainingApp\App\Models\ServiceRequest" not found in C:\xampp\htdocs\Collage website\Software-Services\ajax_submit_service.php:57
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\Collage website\Software-Services\ajax_submit_service.php on line 57

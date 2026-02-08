@@ -184,7 +184,9 @@
         <a class="nav-link" href="/Software-Services/admin/banners.php"><i class="fa-regular fa-image"></i><span>Manage Banners</span></a>
         <a class="nav-link" href="/Software-Services/admin/courses.php"><i class="fa-solid fa-book"></i><span>Manage Courses</span></a>
         <a class="nav-link" href="/Software-Services/admin/trainings.php"><i class="fa-solid fa-layer-group"></i><span>Manage Trainings</span></a>
+        <a class="nav-link <?php echo ($title ?? '') === 'Services' ? 'active' : ''; ?>" href="/Software-Services/admin/services.php"><i class="fa-solid fa-server"></i><span>Manage Services</span></a>
         <a class="nav-link" href="/Software-Services/admin/pages.php"><i class="fa-regular fa-file-lines"></i><span>Manage Pages</span></a>
+        <a class="nav-link" href="/Software-Services/admin/gallery.php"><i class="fa-solid fa-images"></i><span>Manage Gallery</span></a>
         <a class="nav-link" href="/Software-Services/admin/enquiries.php"><i class="fa-regular fa-message"></i><span>Manage Enquiries</span></a>
         <a class="nav-link" href="/Software-Services/admin/enquiries.php?source=registration"><i class="fa-solid fa-users"></i><span>Users / Registrations</span></a>
         <a class="nav-link" href="/Software-Services/admin/pages.php"><i class="fa-solid fa-gear"></i><span>Settings</span></a>

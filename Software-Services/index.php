@@ -1,5 +1,37 @@
 
 <?php
+// Initialize dynamic banner system
+require_once __DIR__ . '/../training/app/Config.php';
+require_once __DIR__ . '/../training/app/Database.php';
+require_once __DIR__ . '/../training/app/Models/Banner.php';
+require_once __DIR__ . '/../training/app/Models/Course.php';
+use TrainingApp\App\Models\Banner;
+use TrainingApp\App\Models\Course;
+
+$heroImage = 'images/banner/01.jpg'; // Default fallback
+try {
+    $banners = Banner::allActive();
+    if (!empty($banners)) {
+        // Use the first active banner
+        $heroImage = $banners[0]['image_path'];
+    }
+} catch (Exception $e) {
+    // Keep default if DB fails
+}
+
+// Fetch featured courses (or all active if no featured logic)
+$courses = [];
+try {
+    $courses = Course::featured(3); // Try to get featured first
+    if (empty($courses)) {
+        // Fallback to latest 3 active courses if no featured ones
+        $allCourses = Course::allActive();
+        $courses = array_slice($allCourses, 0, 3);
+    }
+} catch (Exception $e) {
+    // Handle error silently
+}
+
 include("includes/header.php");
 ?>
 <section class="hero-consynex d-flex align-items-center">
@@ -23,7 +55,7 @@ include("includes/header.php");
     </div>
   </div>
   <style>
-    .hero-consynex{position:relative;min-height:92vh;background:url('images/banner/01.jpg') center/cover no-repeat;font-family:'Poppins',Inter,Roboto,system-ui,-apple-system,Segoe UI,Arial,sans-serif}
+    .hero-consynex{position:relative;min-height:92vh;background:url('<?php echo htmlspecialchars($heroImage); ?>') center/cover no-repeat;font-family:'Poppins',Inter,Roboto,system-ui,-apple-system,Segoe UI,Arial,sans-serif}
     .hero-consynex .overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(6,10,15,.75),rgba(6,10,15,.55))}
     .hero-consynex .themeht-btn{border-radius:.6rem;transition:transform .15s ease, box-shadow .15s ease}
     .hero-consynex .cta-primary{background:#2563eb;border-color:#2563eb;color:#fff}
@@ -37,72 +69,39 @@ include("includes/header.php");
 
 <div class="page-content">
 
-<!--service start-->
-
+<!--courses start-->
 <section>
   <div class="container">
     <div class="row justify-content-center text-center">
       <div class="col-lg-8 col-md-12">
         <div class="theme-title">
-          <h6>Services</h6>
-          <h2>Feel The Power Of Technology Software Service</h2>
+          <h6>Featured Courses</h6>
+          <h2>Upgrade Your Skills With Our Top Courses</h2>
+          <p>Explore our industry-standard courses designed to boost your career. Learn from experts and work on real-world projects.</p>
         </div>
       </div>
     </div>
-    <div class="row gx-lg-5 text-center">
-      <div class="col-lg-4 col-md-6">
-        <div class="service-item style-1">
-          <div class="service-images">
-            <img class="img-fluid" src="images/service-icon/01.png" alt="">
-          </div>
-          <div class="service-desc">
-            <div class="service-title">
-              <h4>Software Design</h4>
-            </div>
-            <p>We provide best Software Service for any type of business as stragegy, management.</p>
-            <a class="service-btn" href="services-single.html">
-              <i class="bi bi-arrow-right-short"></i>
+    <div class="row gx-lg-5 text-center justify-content-center">
+      <?php if (empty($courses)): ?>
+        <div class="col-12"><p class="text-muted">No courses available at the moment.</p></div>
+      <?php else: ?>
+        <?php $hideEnquiryButton = true; ?>
+        <?php foreach ($courses as $c): ?>
+          <?php include 'includes/course_card.php'; ?>
+        <?php endforeach; ?>
+        <?php unset($hideEnquiryButton); ?>
+      <?php endif; ?>
+    </div>
+    <div class="row mt-5">
+        <div class="col-12 text-center">
+            <a class="themeht-btn primary-btn" href="/training/courses">
+                <span>View All Courses</span><i class="bi bi-arrow-right"></i>
             </a>
-          </div>
         </div>
-      </div>
-      <div class="col-lg-4 col-md-6 mt-6 mt-md-0">
-        <div class="service-item style-1">
-          <div class="service-images">
-            <img class="img-fluid" src="images/service-icon/02.png" alt="">
-          </div>
-          <div class="service-desc">
-            <div class="service-title">
-              <h4>Data Security</h4>
-            </div>
-            <p>We provide best Software Service for any type of business as stragegy, management.</p>
-            <a class="service-btn" href="services-single.html">
-              <i class="bi bi-arrow-right-short"></i>
-            </a>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 col-md-6 mt-6 mt-lg-0">
-        <div class="service-item style-1">
-          <div class="service-images">
-            <img class="img-fluid" src="images/service-icon/03.png" alt="">
-          </div>
-          <div class="service-desc">
-            <div class="service-title">
-              <h4>App Integration</h4>
-            </div>
-            <p>We provide best Software Service for any type of business as stragegy, management.</p>
-            <a class="service-btn" href="services-single.html">
-              <i class="bi bi-arrow-right-short"></i>
-            </a>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
 </section>
-
-<!--service end-->
+<!--courses end-->
 
 
 <!--about start-->
@@ -631,7 +630,9 @@ include("includes/header.php");
       <div class="col-lg-4 col-md-12">
         <div class="post-card">
           <div class="post-image">
-            <img class="img-fluid w-100" src="images/blog/01.jpg" alt="Web Development">
+            <a href="blog-web-development.php">
+              <img class="img-fluid w-100" src="images/blog/01.jpg" alt="Web Development">
+            </a>
           </div>
 
           <div class="post-desc">
@@ -648,7 +649,7 @@ include("includes/header.php");
 
             <div class="post-title">
               <h4>
-                <a href="blog-single.php">Top 7 Web Development Trends in 2026</a>
+                <a href="blog-web-development.php">Top 7 Web Development Trends in 2026</a>
               </h4>
             </div>
           </div>
@@ -659,7 +660,9 @@ include("includes/header.php");
       <div class="col-lg-4 col-md-12 mt-6 mt-lg-0">
         <div class="post-card">
           <div class="post-image">
-            <img class="img-fluid w-100" src="images/blog/02.jpg" alt="Mobile App Development">
+            <a href="blog-mobile-development.php">
+              <img class="img-fluid w-100" src="images/blog/02.jpg" alt="Mobile App Development">
+            </a>
           </div>
 
           <div class="post-desc">
@@ -676,7 +679,7 @@ include("includes/header.php");
 
             <div class="post-title">
               <h4>
-                <a href="blog-single.php">Android vs iOS: Which is Better for Your Business?</a>
+                <a href="blog-mobile-development.php">Android vs iOS: Which is Better for Your Business?</a>
               </h4>
             </div>
           </div>
@@ -687,7 +690,9 @@ include("includes/header.php");
       <div class="col-lg-4 col-md-12 mt-6 mt-lg-0">
         <div class="post-card">
           <div class="post-image">
-            <img class="img-fluid w-100" src="images/blog/03.jpg" alt="Cloud & DevOps">
+            <a href="blog-data-analytics.php">
+              <img class="img-fluid w-100" src="images/blog/03.jpg" alt="Data Analytics">
+            </a>
           </div>
 
           <div class="post-desc">
@@ -704,7 +709,7 @@ include("includes/header.php");
 
             <div class="post-title">
               <h4>
-                <a href="blog-single.php">Cloud & DevOps: Why Automation is Important in 2026</a>
+                <a href="blog-data-analytics.php">Data Analytics: How Data is Driving Smart Business Decisions</a>
               </h4>
             </div>
           </div>

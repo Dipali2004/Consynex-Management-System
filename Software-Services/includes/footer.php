@@ -10,14 +10,14 @@
           <ul class="media-icon list-unstyled mb-8">
             <li>
               <p class="mb-0">
-                TechNext Softech, 2nd Floor, Near Main Road, Pune, Maharashtra, India
+                <?php echo COMPANY_ADDRESS; ?>
               </p>
             </li>
             <li>
-              <a href="mailto:technextsoftech@gmail.com">technextsoftech@gmail.com</a>
+              <a href="mailto:<?php echo COMPANY_EMAIL; ?>"><?php echo COMPANY_EMAIL; ?></a>
             </li>
             <li>
-              <a href="tel:+919876543210">+91 98765 43210</a>
+              <a href="tel:+91<?php echo COMPANY_PHONE; ?>"><?php echo COMPANY_PHONE_DISPLAY; ?></a>
             </li>
           </ul>
 
@@ -101,7 +101,7 @@
                   <input class="subscribe-btn" type="submit" name="subscribe" value="Subscribe Now">
                 </form>
                 <small class="d-block mt-3">
-                  Get latest updates, offers & tech news from TechNext Softech.
+                  Get latest updates, offers & tech news from Consynex Technologies.
                 </small>
               </div>
             </div>

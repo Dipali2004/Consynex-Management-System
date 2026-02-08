@@ -205,7 +205,7 @@ function contactform() {
 
     // if the validator does not prevent form submit
     if (!e.isDefaultPrevented()) {
-        var url = "php/contact.html";
+        var url = jQuery(this).attr('action');
 
         // POST values in the background the the script URL
         jQuery.ajax({
@@ -317,6 +317,11 @@ jQuery(document).ready(function() {
     progressbar(),
     countdown(),
     btnproduct();
+
+    // Failsafe: Force hide preloader after 5 seconds
+    setTimeout(function() {
+        preloader();
+    }, 5000);
 });
 
 jQuery(window).on('load', function() {

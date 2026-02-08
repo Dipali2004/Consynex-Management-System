@@ -4,10 +4,14 @@
   <div class="col-md-6">
     <h3>Add Banner</h3>
     <?php if (!empty($msg)): ?><div class="alert alert-info"><?php echo htmlspecialchars($msg); ?></div><?php endif; ?>
-    <form method="post">
+    <form method="post" enctype="multipart/form-data">
       <input type="hidden" name="action" value="create">
       <div class="mb-2"><input class="form-control" name="title" placeholder="Title"></div>
-      <div class="mb-2"><input class="form-control" name="image_path" placeholder="Image URL or path" required></div>
+      <div class="mb-2">
+        <label>Banner Image</label>
+        <input class="form-control" type="file" name="image" required>
+        <small class="text-muted">Recommended size: 1920x1080px</small>
+      </div>
       <div class="mb-2"><input class="form-control" name="link_url" placeholder="Link URL"></div>
       <div class="mb-2"><input class="form-control" name="sort_order" type="number" value="0"></div>
       <div class="mb-2">

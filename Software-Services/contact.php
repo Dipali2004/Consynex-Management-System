@@ -53,15 +53,15 @@ include("includes/header.php");
     <div class="row gx-lg-5 align-items-center">
       <div class="col-lg-4 col-md-12">
         <div class="contact-media"> <i class="flaticon flaticon-office"></i><span>Address:</span>
-          <p>5th Street, 21st Floor, New York, USA </p>
+          <p><?php echo COMPANY_ADDRESS; ?></p>
         </div>
       </div>
       <div class="col-lg-4 col-md-6 mt-5 mt-lg-0">
-        <div class="contact-media"> <i class="flaticon flaticon-email"></i><span>Email Address</span><a href="mailto:themeht23@gmail.com"> themeht23@gmail.com</a>
+        <div class="contact-media"> <i class="flaticon flaticon-email"></i><span>Email Address</span><a href="mailto:<?php echo COMPANY_EMAIL; ?>"> <?php echo COMPANY_EMAIL; ?></a>
         </div>
       </div>
       <div class="col-lg-4 col-md-6 mt-5 mt-lg-0">
-        <div class="contact-media"> <i class="flaticon flaticon-support"></i><span>Phone Number</span><a href="tel:+912345678900">+91-234-567-8900</a>
+        <div class="contact-media"> <i class="flaticon flaticon-support"></i><span>Phone Number</span><a href="tel:+91<?php echo COMPANY_PHONE; ?>"><?php echo COMPANY_PHONE_DISPLAY; ?></a>
         </div>
       </div>
     </div>
@@ -83,36 +83,31 @@ include("includes/header.php");
         <img class="img-fluid" src="images/contact-img.png" alt="">
       </div>
       <div class="col-lg-6 mt-7 mt-lg-0">
-        <form id="contact-form" method="post" action="https://themeht.com/template/soften/ltr/php/contact.php">
+        <form id="contact-form" method="post" action="ajax_submit_inquiry.php">
+          <input type="hidden" name="inquiry_type" value="Contact">
+          <input type="hidden" name="reference_name" value="General Inquiry">
           <div class="messages"></div>
           <div class="row">
             <div class="col-md-6">
               <div class="form-group">
-                <label>First Name</label>
-                <input id="form_name" type="text" name="name" class="form-control" placeholder="Type First name" required="required" data-error="Firstname is required.">
-                <div class="help-block with-errors"></div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <label>Last Name</label>
-                <input id="form_lastname" type="text" name="surname" class="form-control" placeholder="Type Last name" required="required" data-error="Lastname is required.">
-                <div class="help-block with-errors"></div>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-6">
-              <div class="form-group">
-                <label>Email Address</label>
-                <input id="form_email" type="email" name="email" class="form-control" placeholder="Type Email" required="required" data-error="Valid email is required.">
+                <label>Full Name</label>
+                <input id="form_name" type="text" name="name" class="form-control" placeholder="Type Full Name" required="required" data-error="Name is required.">
                 <div class="help-block with-errors"></div>
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-group">
                 <label>Phone Number</label>
-                <input id="form_phone" type="tel" name="phone" class="form-control" placeholder="Type Phone" required="required" data-error="Phone is required">
+                <input id="form_phone" type="tel" name="mobile" class="form-control" placeholder="Type Phone" required="required" data-error="Phone is required">
+                <div class="help-block with-errors"></div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label>Email Address</label>
+                <input id="form_email" type="email" name="email" class="form-control" placeholder="Type Email" required="required" data-error="Valid email is required.">
                 <div class="help-block with-errors"></div>
               </div>
             </div>
@@ -140,7 +135,7 @@ include("includes/header.php");
     <div class="row align-items-center">
       <div class="col-md-12">
         <div class="map iframe-h">
-          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.840108181602!2d144.95373631539215!3d-37.8172139797516!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad65d4c2b349649%3A0xb6899234e561db11!2sEnvato!5e0!3m2!1sen!2sin!4v1497005461921" allowfullscreen=""></iframe>
+          <iframe src="<?php echo COMPANY_MAP_URL; ?>" allowfullscreen=""></iframe>
         </div>
       </div>
     </div>

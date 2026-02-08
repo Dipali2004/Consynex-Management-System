@@ -10,14 +10,15 @@ class Course
 {
     public static function allActive(): array
     {
-        $stmt = Database::conn()->prepare('SELECT id, name, slug, duration, level, image_path, fees, description, featured FROM courses WHERE status=1 ORDER BY id DESC');
+        // Select 'image' as 'image_path' to support Admin uploaded images
+        $stmt = Database::conn()->prepare('SELECT id, name, slug, duration, level, COALESCE(image, image_path) as image_path, fees, description, featured FROM courses WHERE status=1 ORDER BY id DESC');
         $stmt->execute();
         return $stmt->fetchAll();
     }
 
     public static function featured(int $limit = 6): array
     {
-        $stmt = Database::conn()->prepare('SELECT id, name, slug, duration, level, image_path, fees, description FROM courses WHERE status=1 AND featured=1 ORDER BY id DESC LIMIT ?');
+        $stmt = Database::conn()->prepare('SELECT id, name, slug, duration, level, COALESCE(image, image_path) as image_path, fees, description FROM courses WHERE status=1 AND featured=1 ORDER BY id DESC LIMIT ?');
         $stmt->bindValue(1, $limit, PDO::PARAM_INT);
         $stmt->execute();
         return $stmt->fetchAll();
@@ -25,7 +26,7 @@ class Course
 
     public static function findBySlug(string $slug): ?array
     {
-        $stmt = Database::conn()->prepare('SELECT id, name, slug, duration, level, image_path, fees, description FROM courses WHERE slug=? AND status=1');
+        $stmt = Database::conn()->prepare('SELECT id, name, slug, duration, level, COALESCE(image, image_path) as image_path, fees, description FROM courses WHERE slug=? AND status=1');
         $stmt->execute([$slug]);
         $row = $stmt->fetch();
         return $row ?: null;

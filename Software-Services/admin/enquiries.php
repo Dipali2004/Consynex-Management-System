@@ -11,12 +11,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $status = $_POST['status'] ?? '';
     if ($id && $status) {
         Enquiry::updateStatus($id, $status);
-        $msg = 'Updated';
+        $msg = 'Status updated successfully.';
     }
 }
 
-$list = Enquiry::all();
+// Filters
+$date_filter = $_GET['date'] ?? '';
+$type_filter = $_GET['type'] ?? '';
 
-$content = admin_render('enquiries', ['list' => $list, 'msg' => $msg]);
+$filters = [];
+if ($date_filter) {
+    $filters['date'] = $date_filter;
+}
+if ($type_filter) {
+    $filters['type'] = $type_filter;
+}
+
+$list = Enquiry::filter($filters);
+
+$content = admin_render('enquiries', [
+    'list' => $list, 
+    'msg' => $msg,
+    'date_filter' => $date_filter,
+    'type_filter' => $type_filter
+]);
 admin_view('enquiries', ['content' => $content, 'title' => 'Manage Enquiries']);
-

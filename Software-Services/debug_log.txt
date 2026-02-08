@@ -1,0 +1,70 @@
+[2026-02-07 08:19:39] Request Received: POST
+[2026-02-07 08:19:39] POST Data: Array
+(
+    [inquiry_type] => Service
+    [reference_name] => Simulation Test Service
+    [name] => Simulation User
+    [mobile] => 8888888888
+    [email] => simulation@test.com
+    [message] => This is a simulation test.
+)
+
+[2026-02-07 08:19:39] Attempting to create Inquiry...
+[2026-02-07 08:19:39] Inquiry Created. ID: 7
+[2026-02-07 08:19:39] Sending Email To: dipalishinde560@gmail.com
+[2026-02-07 08:19:41] Email Sending Failed (mail() returned false).
+[2026-02-07 08:26:22] Inquiry Created. ID: 8
+[2026-02-07 08:26:24] Email Sending Failed (mail() returned false). Saved copy to uploads/latest_email.txt
+[2026-02-07 08:35:18] Inquiry Created. ID: 9
+[2026-02-07 08:35:20] Email Sending Failed. Saved copy to uploads/latest_email.txt
+[2026-02-07 08:38:53] Inquiry Created. ID: 10
+[2026-02-07 08:38:55] Email Sending Failed. Saved copy to uploads/latest_email.txt
+[2026-02-07 08:52:31] Inquiry Created. ID: 11
+[2026-02-07 08:52:33] Email Sending Failed via Mailer. Logs: 
+SMTP Config Missing: User or Pass is empty in .env file.
+PHP mail() failed.
+[2026-02-07 10:21:45] Inquiry Created. ID: 12
+[2026-02-07 10:21:45] Email Sending Failed via Mailer. Logs: 
+[10:21:45] SendGrid API Key is missing in .env
+[2026-02-07 10:21:56] Inquiry Created. ID: 13
+[2026-02-07 10:21:56] Email Sending Failed via Mailer. Logs: 
+[10:21:56] SendGrid API Key is missing in .env
+[2026-02-07 10:22:29] Inquiry Created. ID: 14
+[2026-02-07 10:22:29] Email Sending Failed via Mailer. Logs: 
+[10:22:29] SendGrid API Key is missing in .env
+[2026-02-07 10:23:18] Inquiry Created. ID: 15
+[2026-02-07 10:23:18] Email Sending Failed via Mailer. Logs: 
+[10:23:18] SendGrid API Key is missing in .env
+[2026-02-07 10:27:10] Inquiry Created. ID: 16
+[2026-02-07 10:27:10] Email Sending Failed via Mailer. Logs: 
+[10:27:10] SendGrid API Key is missing in .env
+[2026-02-07 10:27:47] Inquiry Created. ID: 17
+[2026-02-07 10:27:47] Email Sending Failed via Mailer. Logs: 
+[10:27:47] SendGrid API Key is missing in .env
+[2026-02-07 10:27:47] Inquiry Created. ID: 18
+[2026-02-07 10:27:47] Email Sending Failed via Mailer. Logs: 
+[10:27:47] SendGrid API Key is missing in .env
+[2026-02-08 02:12:13] Inquiry Created. ID: 19
+[2026-02-08 02:12:14] Email Sending Failed via Mailer. Logs: 
+[02:12:14] SendGrid Failed. Code: 401. Response: {"errors":[{"message":"The provided authorization grant is invalid, expired, or revoked","field":null,"help":null}]}. Curl Error: 
+[2026-02-08 02:21:02] Inquiry Created. ID: 20
+[2026-02-08 02:21:05] Email Sending Failed via Mailer. Logs: 
+Message could not be sent. Mailer Error: SMTP Error: Could not authenticate.
+[2026-02-08 02:29:53] Inquiry Created. ID: 21
+[2026-02-08 02:29:56] Email Sending Failed via Mailer. Logs: 
+Message could not be sent. Mailer Error: SMTP Error: Could not authenticate.
+[2026-02-08 02:59:24] Inquiry Created. ID: 22
+[2026-02-08 02:59:28] Email Sent Successfully.
+[2026-02-08 03:00:49] Inquiry Created. ID: 23
+[2026-02-08 03:00:53] Email Sent Successfully.
+[2026-02-08 03:31:45] Exception: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'name' in 'field list'
+[2026-02-08 03:32:54] Service Request Created. ID: 3
+[2026-02-08 03:32:58] Service Request Email Sent Successfully.
+[2026-02-08 03:36:21] Service Request Created. ID: 4
+[2026-02-08 03:36:25] Service Request Email Sent Successfully.
+[2026-02-08 03:41:31] Service Request Created. ID: 5
+[2026-02-08 03:41:34] Service Request Email Sent Successfully.
+[2026-02-08 03:43:24] Service Request Created. ID: 6
+[2026-02-08 03:43:27] Service Request Email Sent Successfully.
+[2026-02-08 07:02:15] Service Request Created. ID: 7
+[2026-02-08 07:02:18] Service Request Email Sent Successfully.

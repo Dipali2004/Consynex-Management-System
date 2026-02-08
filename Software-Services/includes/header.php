@@ -1,3 +1,4 @@
+<?php include_once __DIR__ . '/config.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,7 +10,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- Title -->
 <title>CONSYNEX TECHNOLOGIES</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <!-- favicon icon -->
 <link rel="shortcut icon" href="images/favicon.ico" />
@@ -82,125 +83,255 @@
 
 <header id="site-header" class="header header-transparent">
   <div id="header-wrap">
-    <div class="container">
-      <div class="row">
-        <div class="col">
-          <!-- Navbar -->
-          <nav class="navbar navbar-expand-lg">
-            <div class="d-flex align-items-center w-100">
-              <a class="navbar-brand d-flex align-items-center gap-2" href="index.php">
-                <img src="images/Consynex Logo.JPG.jpeg" alt="CONSYNEX TECHNOLOGIES" style="height:36px;width:auto;object-fit:contain">
-                <span class="brand-text d-none d-md-inline-flex"><span class="brand-accent">CONSYNEX</span>&nbsp;TECHNOLOGIES</span>
-              </a>
-              <button class="navbar-toggler ht-toggler ms-auto d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <svg width="100" height="100" viewBox="0 0 100 100">
-                  <path class="line line1" d="M 20,29.000046 H 80.000231 C 80.000231,29.000046 94.498839,28.817352 94.532987,66.711331 94.543142,77.980673 90.966081,81.670246 85.259173,81.668997 79.552261,81.667751 75.000211,74.999942 75.000211,74.999942 L 25.000021,25.000058"></path>
-                  <path class="line line2" d="M 20,50 H 80"></path>
-                  <path class="line line3" d="M 20,70.999954 H 80.000231 C 80.000231,70.999954 94.498839,71.182648 94.532987,33.288669 94.543142,22.019327 90.966081,18.329754 85.259173,18.331003 79.552261,18.332249 75.000211,25.000058 75.000211,25.000058 L 25.000021,74.999942"></path>
-                </svg>
-              </button>
-              <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
-                <ul class="nav navbar-nav gap-lg-3">
-                  <li class="nav-item">
-                    <a class="nav-link active" href="index.php">Home</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="about-us.php">About Us</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="/training/courses">Courses</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="/training/trainings">Trainings</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="services.php">Services</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">Placements</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="contact.php">Contact</a>
-                  </li>
-                  <li class="nav-item d-lg-none mt-3">
-                    <a class="themeht-btn w-100" href="/training/">Enroll Now</a>
-                  </li>
-                </ul>
-              </div>
-              <a class="themeht-btn ms-lg-3 d-none d-lg-inline-flex" href="/training/">Enroll Now</a>
-            </div>
-          </nav>
+    <nav class="navbar navbar-expand-lg">
+      <div class="container">
+        <!-- Brand -->
+        <a class="navbar-brand" href="index.php">
+          <div class="logo-wrapper">
+             <img src="images/companyLogo.png" alt="CONSYNEX TECHNOLOGIES" class="img-fluid">
+          </div>
+        </a>
+
+        <!-- Mobile Toggler -->
+        <button class="navbar-toggler ht-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <svg width="100" height="100" viewBox="0 0 100 100">
+            <path class="line line1" d="M 20,29.000046 H 80.000231 C 80.000231,29.000046 94.498839,28.817352 94.532987,66.711331 94.543142,77.980673 90.966081,81.670246 85.259173,81.668997 79.552261,81.667751 75.000211,74.999942 75.000211,74.999942 L 25.000021,25.000058"></path>
+            <path class="line line2" d="M 20,50 H 80"></path>
+            <path class="line line3" d="M 20,70.999954 H 80.000231 C 80.000231,70.999954 94.498839,71.182648 94.532987,33.288669 94.543142,22.019327 90.966081,18.329754 85.259173,18.331003 79.552261,18.332249 75.000211,25.000058 75.000211,25.000058 L 25.000021,74.999942"></path>
+          </svg>
+        </button>
+
+        <!-- Navbar Collapse -->
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item"><a class="nav-link" href="index.php">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="about-us.php">About Us</a></li>
+            <li class="nav-item"><a class="nav-link" href="courses.php">Courses</a></li>
+            <li class="nav-item"><a class="nav-link" href="services.php">Services</a></li>
+            <li class="nav-item"><a class="nav-link" href="gallery.php">Gallery</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Placements</a></li>
+            <li class="nav-item"><a class="nav-link" href="contact.php">Contact</a></li>
+            
+            <!-- Mobile Only Button -->
+            <li class="nav-item d-lg-none mt-3">
+              <a class="themeht-btn w-100" href="/training/">Enroll Now</a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Desktop Button (Outside Collapse) -->
+        <div class="d-none d-lg-block ms-4">
+          <a class="themeht-btn" href="/training/">Enroll Now</a>
         </div>
       </div>
-    </div>
+    </nav>
   </div>
 </header>
 
 <!--header end-->
 <style>
-  .header-transparent { position: absolute; left:0; right:0; top:0; background: transparent; }
-  .header-scrolled { position: fixed; background: rgba(17,24,39,.8); backdrop-filter: saturate(180%) blur(6px); box-shadow: 0 2px 10px rgba(0,0,0,.12); }
-  #header-wrap .container { max-width: 1200px; }
-  .navbar { padding-left: 0; padding-right: 0; }
-  .navbar-brand { padding: .25rem .5rem; margin-right: .75rem; display: flex; align-items: center; }
-  .navbar-brand img { height: clamp(32px, 4.5vw, 56px); width: auto; display: block; object-fit: contain; image-rendering: -webkit-optimize-contrast; transition: transform .2s ease; }
-  .navbar-brand:hover img { transform: scale(1.02); }
-  .header-transparent .navbar-brand img { filter: drop-shadow(0 1px 2px rgba(0,0,0,.35)); }
-  .brand-text { font-weight: 700; font-size: clamp(18px, 2.2vw, 26px); line-height: 1; letter-spacing: .2px; }
-  .brand-accent { color:#0EA5E9; }
-  .navbar { font-family: 'Poppins', Inter, Roboto, system-ui, -apple-system, Segoe UI, Arial, sans-serif; }
-  .navbar .nav-link { font-weight: 500; color: #ffffff; position: relative; padding: .5rem .75rem; }
-  .navbar .nav-link:hover { color: #a5b4fc; }
-  .navbar .nav-link::after { content:""; position:absolute; left:0; bottom:-6px; width:0; height:2px; background:#38bdf8; transition: width .2s ease; }
-  .navbar .nav-link:hover::after { width:100%; }
-  .navbar .nav-link.active { color:#ffffff; }
-  .navbar .nav-link.active::after { width:100%; }
-  .themeht-btn { border-radius: .6rem; background:#0EA5E9; border-color:#0EA5E9; color:#fff; transition: background .3s ease, transform .2s ease, box-shadow .2s ease; }
-  .themeht-btn:hover { background:#0284C7; transform: translateY(-1px); box-shadow: 0 6px 18px rgba(2,132,199,.25); }
-  /* Desktop non-transparent state: use dark text */
-  .header:not(.header-transparent) .navbar .nav-link { color:#0F172A; }
-  .header:not(.header-transparent) .navbar .nav-link:hover { color:#0EA5E9; }
-  .navbar-toggler { border: none; }
-  .navbar-collapse { transition: transform .3s ease, opacity .3s ease; }
-  @media (min-width: 992px) {
-    .header-transparent .navbar { padding-top: 1rem; padding-bottom: 1rem; }
-    .header-scrolled .navbar { padding-top: .85rem; padding-bottom: .85rem; }
-    .navbar-brand img { height: 56px; }
-    .navbar .navbar-nav { flex-wrap: nowrap; }
-    .navbar .navbar-nav .nav-item { white-space: nowrap; }
+  /* --- Fixed Navbar & Solid Background --- */
+  
+  /* 1. Body Offset for Fixed Header */
+  body {
+    padding-top: 120px; /* Match Desktop Header Height */
   }
+
+  /* 2. Header Container - Fixed & Solid */
+  #header-wrap {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 120px;
+    background-color: #ffffff; /* Solid White */
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05); /* Subtle Shadow */
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    transition: all 0.3s ease;
+  }
+  
+  /* 3. Navbar Structure */
+  .navbar { width: 100%; padding: 0; }
+  .navbar > .container { height: 100%; display: flex; align-items: center; }
+
+  /* 4. Logo Styling */
+  .navbar-brand {
+    height: 100%;
+    padding: 0;
+    margin-right: 2rem;
+    display: flex;
+    align-items: center;
+  }
+  
+  /* Wrapper with Fixed Width */
+  .logo-wrapper {
+    height: 100%;
+    width: 280px; /* Fixed Desktop Width */
+    display: flex;
+    align-items: center;
+  }
+
+  .logo-wrapper img {
+    height: 100%; 
+    width: 100%;
+    object-fit: fill; /* Strict fill */
+    display: block;
+    padding: 0;
+    margin: 0;
+  }
+
+  /* 5. Menu Items (Dark Text for White Background) */
+  .navbar-nav {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+  }
+
+  .navbar .nav-item {
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+
+  .navbar .nav-link {
+    font-family: 'Poppins', sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 1.5;
+    color: #0F172A; /* Dark Text */
+    padding: 0;
+    position: relative;
+    transition: color 0.3s ease;
+    white-space: nowrap;
+    display: inline-block;
+  }
+
+  .navbar .nav-link:hover, 
+  .navbar .nav-link.active { 
+    color: #0EA5E9; 
+  }
+
+  /* Underline Effect */
+  .navbar .nav-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 0;
+    height: 3px;
+    background: #0EA5E9;
+    transition: width 0.3s ease;
+  }
+  
+  .navbar .nav-link:hover::after, 
+  .navbar .nav-link.active::after { 
+    width: 100%; 
+  }
+
+  /* 6. Buttons */
+  .themeht-btn {
+    background: #0EA5E9;
+    color: #fff;
+    border-radius: 6px;
+    padding: 0 32px;
+    font-weight: 600;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .themeht-btn:hover { background: #0284C7; transform: translateY(-1px); color: #fff; }
+
+  /* 7. Responsive / Mobile */
   @media (max-width: 991.98px) {
-    #header-wrap { padding: .25rem 0; }
-    .navbar-collapse { position: fixed; right: 0; top: 0; bottom: 0; width: 280px; max-width: 80vw; background: #0F172A; padding: 1rem; transform: translateX(100%); opacity: 0; z-index: 1030; }
-    .navbar-collapse.show { transform: translateX(0); opacity: 1; }
-    .navbar-nav .nav-link { color: #ffffff; }
-    .navbar-nav .nav-link.active, .navbar-nav .nav-link:hover { color:#93C5FD; }
-    .nav-overlay { position: fixed; inset: 0; background: rgba(0,0,0,.35); opacity: 0; pointer-events: none; transition: opacity .3s ease; z-index: 1025; }
+    body { padding-top: 70px; }
+    
+    #header-wrap { height: 70px; }
+    
+    .logo-wrapper { width: 160px; }
+    
+    /* Mobile Menu */
+    .navbar-collapse {
+      position: fixed;
+      top: 0; right: 0; bottom: 0;
+      width: 300px;
+      background: #ffffff; /* White background for mobile menu too */
+      padding: 90px 25px 30px;
+      transform: translateX(100%);
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 1030;
+      box-shadow: -5px 0 25px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+    }
+    .navbar-collapse.show { transform: translateX(0); }
+    
+    .navbar-nav {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0;
+      width: 100%;
+      height: auto;
+    }
+    
+    .navbar-nav .nav-item { width: 100%; height: auto; display: block; }
+    
+    .navbar-nav .nav-link { 
+      color: #0F172A !important; 
+      padding: 14px 0; 
+      border-bottom: 1px solid rgba(0,0,0,0.05); 
+      font-size: 16px;
+      width: 100%;
+      display: block;
+    }
+    
+    .navbar-nav .nav-link:hover { color: #0EA5E9 !important; padding-left: 8px; }
+    .navbar-nav .nav-link::after { display: none; }
+    
+    /* Overlay */
+    .nav-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.6); opacity: 0; pointer-events: none; transition: opacity 0.3s; z-index: 1025; }
     .nav-overlay.show { opacity: 1; pointer-events: auto; }
+    
+    /* Toggler */
+    .navbar-toggler { border: none; z-index: 1040; position: relative; padding: 0; margin-left: 15px; }
+    .navbar-toggler svg { width: 44px; height: 44px; }
+    .navbar-toggler path { stroke: #0F172A; stroke-width: 2; transition: stroke 0.3s; }
+    
+    .themeht-btn.w-100 { margin-top: 25px; width: 100%; height: 48px; }
   }
+
+  /* Tablet Adjustment */
+  @media (min-width: 768px) and (max-width: 991.98px) {
+    .logo-wrapper { width: 220px; }
+  }
+
+  /* Desktop Logo Fix */
   @media (min-width: 992px) {
-    .header-transparent .navbar { padding-top: .75rem; padding-bottom: .75rem; }
+    .navbar-collapse { background: transparent; padding: 0; box-shadow: none; }
   }
 </style>
 <script>
   (function(){
-    var h = document.getElementById('site-header');
     var c = document.getElementById('navbarNav');
     var overlay = document.createElement('div');
     overlay.className = 'nav-overlay';
     document.body.appendChild(overlay);
-    function onScroll(){
-      var s = window.scrollY || document.documentElement.scrollTop;
-      if (s > 40) { h.classList.add('header-scrolled'); h.classList.remove('header-transparent'); }
-      else { h.classList.add('header-transparent'); h.classList.remove('header-scrolled'); }
-    }
-    // If no hero is present, keep solid desktop header
-    var hasHero = document.querySelector('.hero-consynex');
-    if (!hasHero) { h.classList.add('header-scrolled'); h.classList.remove('header-transparent'); }
-    else { onScroll(); }
-    window.addEventListener('scroll', onScroll, { passive: true });
+    
+    // Mobile Menu Overlay Logic
     document.addEventListener('show.bs.collapse', function(e){ if (e.target === c) overlay.classList.add('show'); }, false);
     document.addEventListener('hide.bs.collapse', function(e){ if (e.target === c) overlay.classList.remove('show'); }, false);
+    
+    // Active Link Logic
     var links = document.querySelectorAll('.navbar .nav-link');
     var path = (window.location.pathname || '').toLowerCase();
     links.forEach(function(a){

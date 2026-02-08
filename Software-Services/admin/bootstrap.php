@@ -13,10 +13,19 @@ spl_autoload_register(function ($class) {
     }
 });
 
+// Load configuration
+$config_path = __DIR__ . '/../includes/config.php';
+if (file_exists($config_path)) {
+    require_once $config_path;
+}
+
 session_start();
 
 function admin_view(string $name, array $vars = []): void
 {
+    if (!isset($vars['content'])) {
+        $vars['content'] = admin_render($name, $vars);
+    }
     extract($vars);
     require __DIR__ . '/layout.php';
 }

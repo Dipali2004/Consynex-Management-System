@@ -1,110 +1,132 @@
 <?php
-declare(strict_types=1);
-require __DIR__ . '/bootstrap.php';
+require_once __DIR__ . '/bootstrap.php';
+use TrainingApp\App\Database;
+
 require_login();
 
-use TrainingApp\App\Database;
-use TrainingApp\App\Models\Course;
+$pdo = Database::conn();
+$action = $_GET['action'] ?? 'list';
+$error = '';
+$msg = $_GET['msg'] ?? '';
 
-function slugify(string $text): string {
-    $text = preg_replace('~[^\pL\d]+~u', '-', $text);
-    $text = trim($text, '-');
-    $text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
-    $text = strtolower($text);
-    $text = preg_replace('~[^-\w]+~', '', $text);
-    return $text ?: uniqid('course-');
+// Helper to handle file upload
+function handle_image_upload($file) {
+    if (isset($file) && $file['error'] === UPLOAD_ERR_OK) {
+        $allowed = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
+        $ext = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
+        
+        if (in_array($ext, $allowed)) {
+            // Validate size (2MB)
+            if ($file['size'] <= 2 * 1024 * 1024) {
+                $uploadDir = '../uploads/courses/';
+                if (!is_dir($uploadDir)) {
+                    mkdir($uploadDir, 0777, true);
+                }
+                
+                $filename = uniqid('course_') . '.' . $ext;
+                $destination = $uploadDir . $filename;
+                
+                if (move_uploaded_file($file['tmp_name'], $destination)) {
+                    return 'uploads/courses/' . $filename;
+                }
+            }
+        }
+    }
+    return null;
 }
 
-$pdo = Database::conn();
-try { $pdo->exec('ALTER TABLE courses ADD COLUMN level VARCHAR(32) DEFAULT NULL'); } catch (\PDOException $e) {}
-try { $pdo->exec('ALTER TABLE courses ADD COLUMN image_path VARCHAR(512) DEFAULT NULL'); } catch (\PDOException $e) {}
-
-$msg = '';
+// Handle Form Submission
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $action = $_POST['action'] ?? '';
-    if ($action === 'create') {
-        $name = trim($_POST['name'] ?? '');
-        $slug = trim($_POST['slug'] ?? '');
-        $slug = $slug ?: slugify($name);
-        $level = trim($_POST['level'] ?? '');
-        $imagePath = null;
-        if (!empty($_FILES['image']['name'])) {
-            $f = $_FILES['image'];
-            if ($f['error'] === UPLOAD_ERR_OK) {
-                $allowed = ['image/jpeg','image/png','image/webp'];
-                $mime = mime_content_type($f['tmp_name']);
-                if (in_array($mime, $allowed, true) && $f['size'] <= 2*1024*1024) {
-                    $ext = pathinfo($f['name'], PATHINFO_EXTENSION);
-                    $ext = strtolower($ext);
-                    if (!in_array($ext, ['jpg','jpeg','png','webp'], true)) { $ext = 'jpg'; }
-                    $dir = dirname(__DIR__, 2) . '/training/uploads/courses';
-                    if (!is_dir($dir)) { mkdir($dir, 0777, true); }
-                    $fname = uniqid('course_', true) . '.' . $ext;
-                    $dest = $dir . '/' . $fname;
-                    if (move_uploaded_file($f['tmp_name'], $dest)) {
-                        $imagePath = '/training/uploads/courses/' . $fname;
+    if ($action === 'add' || $action === 'edit') {
+        $id = $_POST['id'] ?? null;
+        $course_name = trim($_POST['course_name']);
+        $category = trim($_POST['category']);
+        $description = trim($_POST['description']);
+        $duration = trim($_POST['duration']);
+        $fees = trim($_POST['fees']);
+        $status = isset($_POST['status']) ? 1 : 0;
+        
+        // Image processing
+        $image = null;
+        if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
+            $image = handle_image_upload($_FILES['image']);
+        } elseif ($action === 'edit' && isset($_POST['existing_image'])) {
+            $image = $_POST['existing_image'];
+        }
+        
+        // Validation
+        if (empty($course_name) || empty($category)) {
+            $error = "Course Name and Category are required.";
+        } else {
+            // Slug generation
+            $slug = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $course_name)));
+            
+            if (empty($error)) {
+                if ($id) {
+                    // Update
+                    if ($image) {
+                        $stmt = $pdo->prepare("UPDATE courses SET category=?, course_name=?, description=?, duration=?, fees=?, image=?, status=?, slug=?, name=?, level=? WHERE id=?");
+                        $stmt->execute([$category, $course_name, $description, $duration, $fees, $image, $status, $slug, $course_name, $category, $id]);
+                    } else {
+                        $stmt = $pdo->prepare("UPDATE courses SET category=?, course_name=?, description=?, duration=?, fees=?, status=?, slug=?, name=?, level=? WHERE id=?");
+                        $stmt->execute([$category, $course_name, $description, $duration, $fees, $status, $slug, $course_name, $category, $id]);
                     }
+                    $msg = "Course updated successfully.";
+                } else {
+                    // Create
+                    $stmt = $pdo->prepare("INSERT INTO courses (category, course_name, description, duration, fees, image, status, slug, name, level) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                    $stmt->execute([$category, $course_name, $description, $duration, $fees, $image, $status, $slug, $course_name, $category]);
+                    $msg = "Course created successfully.";
                 }
+                header("Location: courses.php?msg=" . urlencode($msg));
+                exit;
             }
         }
-        Course::create([
-            'name' => $name,
-            'slug' => $slug,
-            'duration' => trim($_POST['duration'] ?? ''),
-            'level' => $level,
-            'image_path' => $imagePath,
-            'fees' => trim($_POST['fees'] ?? ''),
-            'description' => trim($_POST['description'] ?? ''),
-            'status' => (int)($_POST['status'] ?? 1),
-            'featured' => (int)($_POST['featured'] ?? 0),
-        ]);
-        $msg = 'Created';
-    } elseif ($action === 'update') {
-        $id = (int)$_POST['id'];
-        $name = trim($_POST['name'] ?? '');
-        $slug = trim($_POST['slug'] ?? '');
-        $slug = $slug ?: slugify($name);
-        $level = trim($_POST['level'] ?? '');
-        $imagePath = trim($_POST['current_image'] ?? '');
-        if (!empty($_FILES['image']['name'])) {
-            $f = $_FILES['image'];
-            if ($f['error'] === UPLOAD_ERR_OK) {
-                $allowed = ['image/jpeg','image/png','image/webp'];
-                $mime = mime_content_type($f['tmp_name']);
-                if (in_array($mime, $allowed, true) && $f['size'] <= 2*1024*1024) {
-                    $ext = pathinfo($f['name'], PATHINFO_EXTENSION);
-                    $ext = strtolower($ext);
-                    if (!in_array($ext, ['jpg','jpeg','png','webp'], true)) { $ext = 'jpg'; }
-                    $dir = dirname(__DIR__) . '/training/uploads/courses';
-                    if (!is_dir($dir)) { mkdir($dir, 0777, true); }
-                    $fname = uniqid('course_', true) . '.' . $ext;
-                    $dest = $dir . '/' . $fname;
-                    if (move_uploaded_file($f['tmp_name'], $dest)) {
-                        $imagePath = '/training/uploads/courses/' . $fname;
-                    }
-                }
-            }
-        }
-        Course::update($id, [
-            'name' => $name,
-            'slug' => $slug,
-            'duration' => trim($_POST['duration'] ?? ''),
-            'level' => $level,
-            'image_path' => $imagePath,
-            'fees' => trim($_POST['fees'] ?? ''),
-            'description' => trim($_POST['description'] ?? ''),
-            'status' => (int)($_POST['status'] ?? 1),
-            'featured' => (int)($_POST['featured'] ?? 0),
-        ]);
-        $msg = 'Updated';
-    } elseif ($action === 'delete') {
-        Course::delete((int)$_POST['id']);
-        $msg = 'Deleted';
     }
 }
 
-$db = Database::conn();
-$list = $db->query('SELECT id, name, slug, duration, level, image_path, fees, description, status, featured FROM courses ORDER BY id DESC')->fetchAll();
+// Handle Actions
+if ($action === 'delete' && !empty($_GET['id'])) {
+    $stmt = $pdo->prepare("DELETE FROM courses WHERE id = ?");
+    $stmt->execute([$_GET['id']]);
+    header('Location: courses.php?msg=Course deleted successfully');
+    exit;
+}
 
-$content = admin_render('courses', ['list' => $list, 'msg' => $msg]);
-admin_view('courses', ['content' => $content, 'title' => 'Manage Courses']);
+if ($action === 'toggle_status' && !empty($_GET['id']) && isset($_GET['status'])) {
+    $stmt = $pdo->prepare("UPDATE courses SET status = ? WHERE id = ?");
+    $stmt->execute([$_GET['status'], $_GET['id']]);
+    header('Location: courses.php?msg=Status updated successfully');
+    exit;
+}
+
+// Render Views
+if ($action === 'add' || $action === 'edit') {
+    $course = null;
+    if ($action === 'edit' && !empty($_GET['id'])) {
+        $stmt = $pdo->prepare("SELECT * FROM courses WHERE id = ?");
+        $stmt->execute([$_GET['id']]);
+        $course = $stmt->fetch();
+    } elseif (!empty($_POST)) {
+        // Repopulate form on error
+        $course = $_POST;
+        if (isset($_POST['existing_image'])) $course['image'] = $_POST['existing_image'];
+    }
+    
+    admin_view('courses_form', [
+        'title' => ($action === 'edit' ? 'Edit Course' : 'Add New Course'),
+        'course' => $course,
+        'error' => $error
+    ]);
+} else {
+    // List View
+    $stmt = $pdo->query("SELECT * FROM courses ORDER BY category, course_name");
+    $courses = $stmt->fetchAll();
+    
+    admin_view('courses_list', [
+        'title' => 'Courses Management',
+        'courses' => $courses,
+        'msg' => $msg,
+        'error' => $error
+    ]);
+}

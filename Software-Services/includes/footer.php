@@ -24,12 +24,12 @@
           <h5>Follow Us</h5>
           <ul class="list-inline ps-0 ms-0 footer-social">
             <li class="list-inline-item">
-              <a href="https://facebook.com/" target="_blank">
+              <a href="https://www.facebook.com/profile.php?id=61587784525507" target="_blank">
                 <i class="bi bi-facebook"></i>
               </a>
             </li>
             <li class="list-inline-item">
-              <a href="https://instagram.com/" target="_blank">
+              <a href="https://www.instagram.com/consynex_technologies?igsh=ZnM0Y25kOHc5bGp4" target="_blank">
                 <i class="bi bi-instagram"></i>
               </a>
             </li>
@@ -39,7 +39,7 @@
               </a>
             </li>
             <li class="list-inline-item">
-              <a href="https://linkedin.com/" target="_blank">
+              <a href="https://www.linkedin.com/company/consynex-tech/" target="_blank">
                 <i class="bi bi-linkedin"></i>
               </a>
             </li>
@@ -118,8 +118,7 @@
       <div class="copyright">
         <div class="row text-center">
           <div class="col">
-            Copyright © <?php echo date("Y"); ?>
-            <b>Software Service </b> | All Rights Reserved.
+            © <?php echo date("Y"); ?> | All Rights Reserved by Consynex Technologies
           </div>
         </div>
       </div>
@@ -170,6 +169,21 @@
 </div>
 
 <!--back-to-top end-->
+
+<!-- WhatsApp Floating Button -->
+<?php if (defined('ADMIN_MOBILE') && defined('WHATSAPP_API_URL')): ?>
+<a href="#" class="float-whatsapp" onclick="openWhatsApp(); return false;">
+    <i class="bi bi-whatsapp"></i>
+</a>
+<script>
+function openWhatsApp() {
+    const mobile = '<?php echo ADMIN_MOBILE; ?>';
+    const message = encodeURIComponent('Hello, I have a query.');
+    const url = '<?php echo WHATSAPP_API_URL; ?>' + mobile + '?text=' + message;
+    window.open(url, '_blank');
+}
+</script>
+<?php endif; ?>
 
  
 <!-- inject js start -->

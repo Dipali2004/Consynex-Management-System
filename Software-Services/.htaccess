@@ -1,0 +1,12 @@
+# Block access to sensitive files
+<FilesMatch "^\.env|config\.php|\.ini|\.log|\.sql|composer\.json|composer\.lock">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Disable directory browsing
+Options -Indexes
+
+# Custom Error Pages (Optional)
+ErrorDocument 403 "<h1>403 Forbidden</h1>"
+ErrorDocument 404 /Software-Services/error-404.php

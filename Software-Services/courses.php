@@ -24,14 +24,14 @@ include("includes/header.php");
     <div class="row justify-content-center text-center">
       <div class="col-lg-8 col-md-12">
         <h1><span>Our</span> Courses</h1>
-        <nav aria-label="breadcrumb" class="page-breadcrumb">
+        <!-- <nav aria-label="breadcrumb" class="page-breadcrumb">
           <ol class="breadcrumb">
             <li class="breadcrumb-item">
               <a href="index.php"><i class="bi bi-house-door me-1"></i>Home</a>
             </li>
             <li class="breadcrumb-item active" aria-current="page">Courses</li>
           </ol>
-        </nav>
+        </nav> -->
       </div>
     </div>
   </div>
@@ -158,11 +158,6 @@ include("includes/header.php");
 </div>
 <!-- page wrapper end -->
 
-<!-- Floating WhatsApp Button -->
-<a href="#" class="float-whatsapp" onclick="openWhatsApp(); return false;">
-    <i class="bi bi-whatsapp"></i>
-</a>
-
 <style>
 .hover-lift {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -174,40 +169,9 @@ include("includes/header.php");
 .object-fit-cover {
     object-fit: cover;
 }
-.float-whatsapp {
-    position: fixed;
-    width: 60px;
-    height: 60px;
-    bottom: 40px;
-    right: 40px;
-    background-color: #25d366;
-    color: #FFF;
-    border-radius: 50px;
-    text-align: center;
-    font-size: 30px;
-    box-shadow: 2px 2px 3px #999;
-    z-index: 1000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    transition: all 0.3s ease;
-}
-.float-whatsapp:hover {
-    background-color: #128C7E;
-    color: #FFF;
-    transform: scale(1.1);
-}
 </style>
 
 <script>
-function openWhatsApp() {
-    const mobile = '<?php echo ADMIN_MOBILE; ?>';
-    const message = encodeURIComponent(`Hello, I have a query.`);
-    const url = `<?php echo WHATSAPP_API_URL; ?>${mobile}?text=${message}`;
-    window.open(url, '_blank');
-}
-
 function openInquiryForm(courseName) {
     // Set the course name
     var input = document.getElementById('reference_name');

@@ -3,10 +3,15 @@
 // Initialize dynamic banner system
 require_once __DIR__ . '/../training/app/Config.php';
 require_once __DIR__ . '/../training/app/Database.php';
+require_once __DIR__ . '/../training/app/EnvLoader.php';
 require_once __DIR__ . '/../training/app/Models/Banner.php';
 require_once __DIR__ . '/../training/app/Models/Course.php';
 use TrainingApp\App\Models\Banner;
 use TrainingApp\App\Models\Course;
+use TrainingApp\App\EnvLoader;
+
+// Load environment variables
+EnvLoader::load(__DIR__ . '/../.env');
 
 $heroImage = 'images/banner/01.jpg'; // Default fallback
 try {
@@ -39,7 +44,7 @@ include("includes/header.php");
   <div class="container position-relative">
     <div class="row">
       <div class="col-lg-10 col-xl-8">
-        <h1 class="display-4 fw-bold text-white mb-3 animate__animated animate__fadeInUp">CONSYNEX TECHNOLOGIES</h1>
+        <h1 class="display-4 fw-bold text-white mb-3 animate__animated animate__fadeInUp" style="color: #ffffff !important;">CONSYNEX TECHNOLOGIES</h1>
         <h2 class="h4 text-white-50 mb-4 animate__animated animate__fadeInUp animate__delay-1s">Industry-Oriented IT Training & Career Development Institute</h2>
         <p class="text-white-50 mb-4 animate__animated animate__fadeInUp animate__delay-2s">At Consynex Technologies, we provide practical, job-focused IT training with real-time projects, expert mentors, and industry-relevant courses. Our goal is to prepare students for successful careers in the IT industry.</p>
         <div class="d-flex flex-wrap gap-3 animate__animated animate__fadeInUp animate__delay-3s">
@@ -211,23 +216,19 @@ include("includes/header.php");
       </div>
       <div class="col-lg-6 col-md-12 mt-6 mt-lg-0 pe-lg-10">
         <div class="theme-title mb-4">
-          <h6>What We Do</h6>
-          <h2>Online Reporting To Get Best Of Business</h2>
-          <p>Scale your software operations through a custom engineering team. Meet the demand of your company’s operations with a high-performing nearshore team skilled in the technologies you need.</p>
+          <span class="sub-title">WHAT WE DO</span> 
+          <h2>Learn, Build & Grow Your IT Career With Us</h2> 
+          <p> 
+          Our mission is to transform beginners into skilled IT professionals 
+          through hands-on training, live projects, and expert mentorship. 
+          </p> 
         </div>
-        <ul class="list-unstyled list-icon">
-          <li>
-            <i class="bi bi-check-lg"></i> Web development tehnology
-          </li>
-          <li>
-            <i class="bi bi-check-lg"></i> 10 Years of experience
-          </li>
-          <li>
-            <i class="bi bi-check-lg"></i> Top skilled engineers from everywhere
-          </li>
-          <li>
-            <i class="bi bi-check-lg"></i> Best Features that Keep Us Ahed
-          </li>
+        <ul class="features-list list-unstyled"> 
+          <li class="mb-2">✔ Practical Hands-On Training</li> 
+          <li class="mb-2">✔ Industry-Standard Curriculum</li> 
+          <li class="mb-2">✔ Live Project Experience</li> 
+          <li class="mb-2">✔ Internship & Placement Assistance</li> 
+          <li class="mb-2">✔ Affordable Course Fees</li> 
         </ul>
       </div>
     </div>
@@ -245,18 +246,18 @@ include("includes/header.php");
       <div class="col">
         <div class="marquee-wrap">
           <div class="marquee-text">
-            <span>A Smart Software Application</span>
-            <i class="bi bi-dot"></i>
-            <span>Sass Landing Page</span>
-            <i class="bi bi-dot"></i>
-            <span>Build Software For Business</span>
-            <i class="bi bi-dot"></i>
-            <span>Startup Business</span>
-            <i class="bi bi-dot"></i>
-            <span>Creative Design</span>
-            <i class="bi bi-dot"></i>
-            <span>Software & Sass Landing Page</span>
-            <i class="bi bi-dot"></i>
+            <span>Custom Software Solutions</span> 
+            <i class="bi bi-dot"></i> 
+            <span>Web & Application Development</span> 
+            <i class="bi bi-dot"></i> 
+            <span>Professional IT Training</span> 
+            <i class="bi bi-dot"></i> 
+            <span>Real-Time Industry Projects</span> 
+            <i class="bi bi-dot"></i> 
+            <span>Modern Technologies</span> 
+            <i class="bi bi-dot"></i> 
+            <span>Reliable & Secure Systems</span> 
+            <i class="bi bi-dot"></i> 
           </div>
         </div>
       </div>
@@ -269,7 +270,7 @@ include("includes/header.php");
 
 <!--portfolio start-->
 
-<section>
+<!-- <section>
   <div class="container">
     <div class="row justify-content-center text-center">
       <div class="col-lg-8 col-md-12">
@@ -332,7 +333,7 @@ include("includes/header.php");
       </div>
     </div>
   </div>
-</section>
+</section> -->
 
 <!--portfolio end-->
 
@@ -472,24 +473,24 @@ include("includes/header.php");
     <div class="row">
       <div class="col-lg-6">
         <div class="theme-title">
-          <h6>Testimonial</h6>
-          <h2>Some Words From Our Happy Clients</h2>
+          <h6>Student Reviews</h6>
+          <h2>What Our Students Say</h2>
         </div>
         <div class="row">
           <div class="col-md-6 mt-md-10">
             <div class="testimonial style-1">
               <div class="testimonial-media">
                 <div class="testimonial-img">
-                  <img class="img-fluid" src="images/testimonial/01.jpg" alt="">
+                  <img class="img-fluid" src="images/testimonial/dummy-prod-1.jpg" alt="">
                 </div>
                 <div class="testimonial-quote">
                   <i class="flaticon flaticon-quote"></i>
                 </div>
               </div>
-              <p>We’re building a better application now, thanks to Soften. amazing for the small businesses around the world.</p>
+              <p>Excellent training with clear explanations and practical examples. The concepts were taught in a very simple way, which helped me gain confidence in IT fundamentals and real-world applications.</p>
               <div class="testimonial-caption">
-                <h5>Roxie Payne</h5>
-                <label>Manager of Soften</label>
+                <h5>Prathmesh Vaishnav</h5>
+                <label>Student</label>
               </div>
             </div>
           </div>
@@ -497,16 +498,16 @@ include("includes/header.php");
             <div class="testimonial style-1">
               <div class="testimonial-media">
                 <div class="testimonial-img">
-                  <img class="img-fluid" src="images/testimonial/02.jpg" alt="">
+                  <img class="img-fluid" src="images/testimonial/dummy-prod-1.jpg" alt="">
                 </div>
                 <div class="testimonial-quote">
                   <i class="flaticon flaticon-quote"></i>
                 </div>
               </div>
-              <p>We’re building a better application now, thanks to Soften. amazing for the small businesses around the world.</p>
+              <p>The teaching quality is very good and industry-oriented. Doubts are cleared patiently, and hands-on practice made learning easy and effective. Highly recommended for beginners.</p>
               <div class="testimonial-caption">
-                <h5>Jackson Vore</h5>
-                <label>CEO of Soften</label>
+                <h5>Vijay Kamble</h5>
+                <label>Student</label>
               </div>
             </div>
           </div>
@@ -518,16 +519,16 @@ include("includes/header.php");
             <div class="testimonial style-1">
               <div class="testimonial-media">
                 <div class="testimonial-img">
-                  <img class="img-fluid" src="images/testimonial/03.jpg" alt="">
+                  <img class="img-fluid" src="images/testimonial/dummy-prod-1.jpg" alt="">
                 </div>
                 <div class="testimonial-quote">
                   <i class="flaticon flaticon-quote"></i>
                 </div>
               </div>
-              <p>We’re building a better application now, thanks to Soften. amazing for the small businesses around the world.</p>
+              <p>One of the best learning experiences. The training focuses on both theory and practical knowledge. The guidance and support throughout the course were really helpful.</p>
               <div class="testimonial-caption">
-                <h5>Breiny Lucy</h5>
-                <label>HR of Soften</label>
+                <h5>Rupesh Gadhve</h5>
+                <label>Student</label>
               </div>
             </div>
           </div>
@@ -535,16 +536,16 @@ include("includes/header.php");
             <div class="testimonial style-1">
               <div class="testimonial-media">
                 <div class="testimonial-img">
-                  <img class="img-fluid" src="images/testimonial/04.jpg" alt="">
+                  <img class="img-fluid" src="images/testimonial/dummy-prod-1.jpg" alt="">
                 </div>
                 <div class="testimonial-quote">
                   <i class="flaticon flaticon-quote"></i>
                 </div>
               </div>
-              <p>We’re building a better application now, thanks to Soften. amazing for the small businesses around the world.</p>
+              <p>Very well-structured training with real-time examples. The environment is friendly, and the trainer explains each topic in detail. This course helped me build a strong foundation.</p>
               <div class="testimonial-caption">
-                <h5>Camryn Kay</h5>
-                <label>CEO of Soften</label>
+                <h5>Aryan Kadam</h5>
+                <label>Student</label>
               </div>
             </div>
           </div>
@@ -568,7 +569,7 @@ include("includes/header.php");
           <div class="col-lg-3 col-sm-6">
             <div class="counter">
               <div class="counter-desc">
-                <span class="count-number" data-count="482">482</span>
+                <span class="count-number" data-count="5">5</span>
                 <span>+</span>
                 <h5>Project Done</h5>
               </div>
@@ -586,8 +587,8 @@ include("includes/header.php");
           <div class="col-lg-3 col-sm-6 mt-6 mt-lg-0">
             <div class="counter">
               <div class="counter-desc">
-                <span class="count-number" data-count="234">234</span>
-                <span>+</span>
+                <span class="count-number" data-count="1">1</span>
+                
                 <h5>Winning Awards</h5>
               </div>
             </div>
@@ -595,8 +596,8 @@ include("includes/header.php");
           <div class="col-lg-3 col-sm-6 mt-6 mt-lg-0">
             <div class="counter">
               <div class="counter-desc">
-                <span class="count-number" data-count="72">72</span>
-                <span>K</span>
+                <span class="count-number" data-count="10">10</span>
+                
                 <h5>Happy Client</h5>
               </div>
             </div>

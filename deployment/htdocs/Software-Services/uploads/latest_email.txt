@@ -1,0 +1,15 @@
+Subject: New Inquiry: Course - Hardware and Networking
+To: dipalishinde560@gmail.com
+Via: SendGrid API
+
+New Inquiry Received
+--------------------
+Type: Course
+Interest: Hardware and Networking
+
+Name: sdsd
+Mobile: 08010331634
+Email: dipalinde560@gmail.com
+Message: sd sdfs sfsd
+
+Date: 2026-02-08 02:12:13

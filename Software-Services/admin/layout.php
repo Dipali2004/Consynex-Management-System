@@ -163,14 +163,10 @@
   </style>
 </head>
 <body>
-<?php if (empty($_SESSION['admin_id'])): ?>
+<?php if (empty($_SESSION['admin_id']) || !empty($force_login_layout)): ?>
   <div class="login-wrap">
     <div class="card-modern login-card">
       <div class="p-3">
-        <div class="d-flex align-items-center mb-2">
-          <i class="fa-solid fa-graduation-cap me-2 text-primary" style="font-size:28px"></i>
-          <div class="fw-semibold">Training Institute Admin</div>
-        </div>
         <?php echo $content ?? ''; ?>
       </div>
     </div>

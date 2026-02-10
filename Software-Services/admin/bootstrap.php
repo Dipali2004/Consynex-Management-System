@@ -1,6 +1,9 @@
 <?php
 declare(strict_types=1);
 
+// Prevent "headers already sent" issues on shared hosting
+ob_start();
+
 spl_autoload_register(function ($class) {
     $prefix = 'TrainingApp\\App\\';
     if (strncmp($class, $prefix, strlen($prefix)) !== 0) {
@@ -19,7 +22,17 @@ if (file_exists($config_path)) {
     require_once $config_path;
 }
 
+// Security Hardening
+ini_set('display_errors', '0');
+ini_set('session.cookie_httponly', '1');
+ini_set('session.use_strict_mode', '1');
+
 session_start();
+
+// CSRF Protection
+if (empty($_SESSION['csrf_token'])) {
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+}
 
 function admin_view(string $name, array $vars = []): void
 {
@@ -40,9 +53,17 @@ function admin_render(string $tpl, array $vars = []): string
 
 function require_login(): void
 {
-    if (empty($_SESSION['admin_id'])) {
-        header('Location: /Software-Services/admin/index.php');
+    if (empty($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== true) {
+        header('Location: /Software-Services/admin/login.php');
         exit;
     }
+    
+    // Session Inactivity Timeout (30 minutes)
+    if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity'] > 1800)) {
+        session_unset();
+        session_destroy();
+        header('Location: /Software-Services/admin/login.php?timeout=1');
+        exit;
+    }
+    $_SESSION['last_activity'] = time();
 }
-

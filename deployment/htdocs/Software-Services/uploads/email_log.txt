@@ -1,0 +1,69 @@
+--- Email Log 2026-02-07 08:11:21 ---
+To: dipalishinde560@gmail.com
+Subject: New Inquiry: Service - Web Development
+Headers: MIME-Version: 1.0
+Content-type: text/plain; charset=UTF-8
+From: no-reply@consynex.com
+Reply-To: test@example.com
+X-Mailer: PHP/8.2.12
+Body:
+New Inquiry Received
+--------------------
+Type: Service
+Interest: Web Development
+
+Name: Test User
+Mobile: 1234567890
+Email: test@example.com
+Message: This is a test message from debug script.
+
+Date: 2026-02-07 08:11:21
+
+
+Status: Failed (mail() returned false). Check your mail server configuration (e.g., sendmail in XAMPP).
+--- Email Log 2026-02-07 08:14:14 ---
+To: dipalishinde560@gmail.com
+Subject: New Inquiry: Service - System Installation & Formatting
+Headers: MIME-Version: 1.0
+Content-type: text/plain; charset=UTF-8
+From: no-reply@consynex.com
+Reply-To: shindedipal@gmail.com
+X-Mailer: PHP/8.2.12
+Body:
+New Inquiry Received
+--------------------
+Type: Service
+Interest: System Installation & Formatting
+
+Name: Dipali Shinde
+Mobile: 8010331623
+Email: shindedipal@gmail.com
+Message: dfghj aksdjaks
+
+Date: 2026-02-07 08:14:14
+
+
+Status: Failed (mail() returned false). Check your mail server configuration (e.g., sendmail in XAMPP).
+--- Email Log 2026-02-07 08:16:38 ---
+To: dipalishinde560@gmail.com
+Subject: New Inquiry: Course - Hardware and Networking
+Headers: MIME-Version: 1.0
+Content-type: text/plain; charset=UTF-8
+From: no-reply@consynex.com
+Reply-To: shindedipal@gmail.com
+X-Mailer: PHP/8.2.12
+Body:
+New Inquiry Received
+--------------------
+Type: Course
+Interest: Hardware and Networking
+
+Name: Dipali Shinde
+Mobile: 8010331634
+Email: shindedipal@gmail.com
+Message: xfgdffgfds sas
+
+Date: 2026-02-07 08:16:38
+
+
+Status: Failed (mail() returned false). Check your mail server configuration (e.g., sendmail in XAMPP).

@@ -1,0 +1,49 @@
+# ----------------------------------------------------------------------
+# | Production Hardening - Root .htaccess
+# ----------------------------------------------------------------------
+
+# 1. Disable Directory Browsing
+Options -Indexes
+
+# 2. Protect Sensitive Files and Directories
+<FilesMatch "^\.env|composer\.json|composer\.lock|package\.json|package-lock\.json|README\.md|debug_log\.txt|error_log\.txt|error_log|prepare_deployment\.php|export_db\.php|update_db_security\.php|schema\.sql">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order deny,allow
+        Deny from all
+    </IfModule>
+</FilesMatch>
+
+# Block access to sessions directory
+RewriteRule ^sessions/.*$ - [F,L]
+
+# 3. Block access to hidden files and directories
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{SCRIPT_FILENAME} -d [OR]
+    RewriteCond %{SCRIPT_FILENAME} -f
+    RewriteRule "(^|/)\." - [F]
+</IfModule>
+
+# 4. Security Headers (Best Practice)
+<IfModule mod_headers.c>
+    # X-Frame-Options: Prevent Clickjacking
+    Header set X-Frame-Options "SAMEORIGIN"
+    
+    # X-Content-Type-Options: Prevent MIME sniffing
+    Header set X-Content-Type-Options "nosniff"
+    
+    # X-XSS-Protection: Enable browser XSS filter
+    Header set X-XSS-Protection "1; mode=block"
+    
+    # Referrer-Policy: Control referrer information
+    Header set Referrer-Policy "strict-origin-when-cross-origin"
+    
+    # Content-Security-Policy: Baseline protection (Customize as needed)
+    Header set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://fonts.googleapis.com; font-src 'self' https://cdnjs.cloudflare.com https://fonts.gstatic.com; img-src 'self' data: *; connect-src 'self';"
+</IfModule>
+
+# 5. Disable Server Signature
+ServerSignature Off

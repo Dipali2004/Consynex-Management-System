@@ -93,7 +93,7 @@ include("includes/header.php");
                                 <i class="bi bi-gear" style="font-size: 3.5rem; color: #2563eb;"></i>
                             <?php endif; ?>
                         </div>
-                        <div class="service-desc flex-grow-1 d-flex flex-column">
+                        <div class="service-desc">
                             <div class="service-title">
                                 <h4><?php echo htmlspecialchars($srv['service_name']); ?></h4>
                             </div>

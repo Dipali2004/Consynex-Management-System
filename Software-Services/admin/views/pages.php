@@ -5,6 +5,7 @@
   <div class="col-md-6">
     <h3>About Us</h3>
     <form method="post">
+      <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
       <input type="hidden" name="key" value="about">
       <div class="mb-2"><input class="form-control" name="title" value="<?php echo htmlspecialchars($about['title'] ?? 'About Us'); ?>"></div>
       <div class="mb-2"><textarea class="form-control" name="content" rows="8"><?php echo htmlspecialchars($about['content'] ?? ''); ?></textarea></div>
@@ -15,6 +16,7 @@
     <h3>Contact Details</h3>
     <?php $cdata = !empty($contact['data_json']) ? json_decode($contact['data_json'], true) : []; ?>
     <form method="post">
+      <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
       <input type="hidden" name="key" value="contact">
       <div class="mb-2"><input class="form-control" name="title" value="<?php echo htmlspecialchars($contact['title'] ?? 'Contact Us'); ?>"></div>
       <div class="mb-2"><textarea class="form-control" name="content" rows="6"><?php echo htmlspecialchars($contact['content'] ?? ''); ?></textarea></div>

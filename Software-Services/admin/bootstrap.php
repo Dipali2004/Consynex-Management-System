@@ -23,15 +23,50 @@ if (file_exists($config_path)) {
 }
 
 // Security Hardening
-ini_set('display_errors', '0');
+if (getenv('APP_ENV') === 'production') {
+    ini_set('display_errors', '0');
+    ini_set('log_errors', '1');
+} else {
+    ini_set('display_errors', '1');
+}
+
+// Session Security
+$session_path = __DIR__ . '/../../sessions';
+if (!is_dir($session_path)) {
+    mkdir($session_path, 0700, true);
+}
+session_save_path($session_path);
+
 ini_set('session.cookie_httponly', '1');
 ini_set('session.use_strict_mode', '1');
+ini_set('session.cookie_samesite', 'Lax');
+if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') {
+    ini_set('session.cookie_secure', '1');
+}
 
 session_start();
+
+// Security Headers
+header("X-Frame-Options: SAMEORIGIN");
+header("X-Content-Type-Options: nosniff");
+header("X-XSS-Protection: 1; mode=block");
+header("Referrer-Policy: strict-origin-when-cross-origin");
 
 // CSRF Protection
 if (empty($_SESSION['csrf_token'])) {
     $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+}
+
+// Global CSRF Middleware for POST requests
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Skip CSRF for login page (it has its own check or needs to set the token)
+    $current_page = basename($_SERVER['PHP_SELF']);
+    if ($current_page !== 'login.php') {
+        if (empty($_POST['csrf_token']) || !hash_equals($_SESSION['csrf_token'], $_POST['csrf_token'])) {
+            header('HTTP/1.1 403 Forbidden');
+            die("<h1>403 Forbidden</h1><p>CSRF token validation failed. Please refresh the page and try again.</p>");
+        }
+    }
 }
 
 function admin_view(string $name, array $vars = []): void

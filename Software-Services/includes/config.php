@@ -1,7 +1,7 @@
 <?php
 // Configuration settings
-define('ADMIN_MOBILE', '919876543210'); // Default admin mobile number for WhatsApp inquiries
-define('WHATSAPP_API_URL', 'https://wa.me/');
+define('ADMIN_MOBILE', getenv('ADMIN_MOBILE') ?: '919876543210'); // Default admin mobile number for WhatsApp inquiries
+define('WHATSAPP_API_URL', getenv('WHATSAPP_API_URL') ?: 'https://wa.me/');
 
 // Company Details
 define('COMPANY_ADDRESS', 'A/P Dudulgaon, Vasundhara Society, Office No. 03, Talekar Park, Pune – 412105');

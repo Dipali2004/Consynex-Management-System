@@ -5,6 +5,7 @@
     <h3>Add Banner</h3>
     <?php if (!empty($msg)): ?><div class="alert alert-info"><?php echo htmlspecialchars($msg); ?></div><?php endif; ?>
     <form method="post" enctype="multipart/form-data">
+      <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
       <input type="hidden" name="action" value="create">
       <div class="mb-2"><input class="form-control" name="title" placeholder="Title"></div>
       <div class="mb-2">
@@ -34,6 +35,7 @@
               <div class="small text-muted"><?php echo htmlspecialchars($b['image_path']); ?></div>
             </div>
             <form method="post" class="d-flex">
+              <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
               <input type="hidden" name="id" value="<?php echo (int)$b['id']; ?>">
               <input type="hidden" name="action" value="delete">
               <button class="btn btn-danger btn-sm">Delete</button>

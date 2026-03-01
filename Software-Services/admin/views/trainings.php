@@ -5,6 +5,7 @@
     <h3>Add Training Program</h3>
     <?php if (!empty($msg)): ?><div class="alert alert-info"><?php echo htmlspecialchars($msg); ?></div><?php endif; ?>
     <form method="post">
+      <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
       <input type="hidden" name="action" value="create">
       <div class="mb-2"><input class="form-control" name="name" placeholder="Name" required></div>
       <div class="mb-2"><input class="form-control" name="slug" placeholder="Slug (optional)"></div>
@@ -29,12 +30,14 @@
               <div class="small text-muted">Slug: <?php echo htmlspecialchars($t['slug']); ?> | Status: <?php echo (int)$t['status'] ? 'Active' : 'Inactive'; ?></div>
             </div>
             <form method="post">
+              <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
               <input type="hidden" name="id" value="<?php echo (int)$t['id']; ?>">
               <input type="hidden" name="action" value="delete">
               <button class="btn btn-danger btn-sm">Delete</button>
             </form>
           </div>
           <form method="post" class="mt-3">
+            <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
             <input type="hidden" name="action" value="update">
             <input type="hidden" name="id" value="<?php echo (int)$t['id']; ?>">
             <div class="row g-2">

@@ -1,6 +1,11 @@
-vendor/
 .env
-
+sessions/
+Software-Services/debug_log.txt
+Software-Services/error_log.txt
+Software-Services/error_log
+Software-Services/uploads/courses/course_*
+Software-Services/images/banner/banner_*
+vendor/
 logs/
 cache/
 *.log

@@ -128,6 +128,7 @@ function render_inquiry_table($items) {
                     </td>
                     <td>
                         <form method="post" class="d-flex flex-column gap-2">
+                            <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
                             <input type="hidden" name="id" value="<?php echo (int)$e['id']; ?>">
                             <select name="status" class="form-select form-select-sm <?php 
                                 echo match($e['status']) {

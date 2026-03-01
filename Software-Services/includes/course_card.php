@@ -36,7 +36,7 @@ $courseName = !empty($c['name']) ? $c['name'] : ($c['course_name'] ?? 'Untitled 
         <div class="service-images mb-2" style="min-height: 200px; display: flex; align-items: center; justify-content: center; overflow: hidden; border-radius: 8px;">
             <img class="img-fluid" src="<?php echo htmlspecialchars($imgSrc); ?>" alt="<?php echo htmlspecialchars($courseName); ?>" style="width: 100%; height: 200px; object-fit: cover;">
         </div>
-        <div class="service-desc flex-grow-1 d-flex flex-column" style="padding-top: 10px;">
+        <div class="service-desc">
             <div class="service-title">
                 <h4><?php echo htmlspecialchars($courseName); ?></h4>
             </div>

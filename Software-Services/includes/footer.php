@@ -131,35 +131,6 @@
 <!-- page wrapper end -->
 
 
-<!--color-customizer start-->
-
-<div class="color-customizer closed">
-  <a class="opener" href="#"> <i class="bi bi-palette"></i></a>
-  <div class="clearfix color-chooser text-center">
-    <h4 class="mb-4">Soften With Awesome Colors</h4>
-    <ul class="colorChange clearfix">
-      <li class="theme-default selected" title="theme-default" data-style="color-1"></li>
-      <li class="theme-2" title="theme-2" data-style="color-2"></li>
-      <li class="theme-3" title="theme-3" data-style="color-3"></li>
-      <li class="theme-4" title="theme-4" data-style="color-4"></li>
-      <li class="theme-5" title="theme-5" data-style="color-5"></li>
-      <li class="theme-6" title="theme-6" data-style="color-6"></li>
-      <li class="theme-7" title="theme-7" data-style="color-7"></li>
-      <li class="theme-8" title="theme-8" data-style="color-8"></li>
-      <li class="theme-9" title="theme-9" data-style="color-9"></li>
-      <li class="theme-10" title="theme-10" data-style="color-10"></li>
-      <li class="theme-11" title="theme-11" data-style="color-11"></li>
-      <li class="theme-12" title="theme-12" data-style="color-12"></li>
-    </ul>
-    <div class="text-center mt-4">
-      <a class="themeht-btn" href="#">Purchase Now</a>
-    </div>
-  </div>
-</div>
-
-<!--color-customizer end-->
-
-
 <!--back-to-top start-->
 
 <div class="scroll-top">

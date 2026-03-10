@@ -271,6 +271,8 @@
 .team-member {
     position: relative;
     text-align: center;
+    max-width: 280px;
+    margin: 0 auto;
 }
 
 .team-images {
@@ -336,7 +338,7 @@
 
 .team-member img {
     width: 100%;
-    height: 350px;
+    height: 280px;
     object-fit: cover;
 }
 

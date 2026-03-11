@@ -6,7 +6,7 @@
       <div class="d-flex justify-content-between align-items-center">
         <div>
           <div class="text-uppercase small text-muted">Total Courses</div>
-          <div class="display-6 fw-semibold counter" data-target="<?php echo (int)$totalCourses; ?>">0</div>
+          <div class="display-6 fw-semibold counter" data-target="<?php echo (int) $totalCourses; ?>">0</div>
         </div>
         <i class="fa-solid fa-book text-primary" style="font-size:28px"></i>
       </div>
@@ -17,7 +17,7 @@
       <div class="d-flex justify-content-between align-items-center">
         <div>
           <div class="text-uppercase small text-muted">Total Trainings</div>
-          <div class="display-6 fw-semibold counter" data-target="<?php echo (int)$totalTrainings; ?>">0</div>
+          <div class="display-6 fw-semibold counter" data-target="<?php echo (int) $totalTrainings; ?>">0</div>
         </div>
         <i class="fa-solid fa-layer-group text-primary" style="font-size:28px"></i>
       </div>
@@ -28,7 +28,7 @@
       <div class="d-flex justify-content-between align-items-center">
         <div>
           <div class="text-uppercase small text-muted">Total Enquiries</div>
-          <div class="display-6 fw-semibold counter" data-target="<?php echo (int)$totalEnquiries; ?>">0</div>
+          <div class="display-6 fw-semibold counter" data-target="<?php echo (int) $totalEnquiries; ?>">0</div>
         </div>
         <i class="fa-regular fa-message text-primary" style="font-size:28px"></i>
       </div>
@@ -39,7 +39,7 @@
       <div class="d-flex justify-content-between align-items-center">
         <div>
           <div class="text-uppercase small text-muted">Registrations</div>
-          <div class="display-6 fw-semibold counter" data-target="<?php echo (int)$totalRegistrations; ?>">0</div>
+          <div class="display-6 fw-semibold counter" data-target="<?php echo (int) $totalRegistrations; ?>">0</div>
         </div>
         <i class="fa-solid fa-user-plus text-primary" style="font-size:28px"></i>
       </div>
@@ -101,16 +101,21 @@
           <tbody>
             <?php foreach (($recentEnquiries ?? []) as $e): ?>
               <tr>
-                <td><?php echo (int)$e['id']; ?></td>
+                <td><?php echo (int) $e['id']; ?></td>
                 <td><?php echo htmlspecialchars($e['name']); ?></td>
                 <td><?php echo htmlspecialchars($e['email']); ?></td>
                 <td><?php echo htmlspecialchars($e['message']); ?></td>
-                <td><span class="badge bg-primary-subtle text-primary"><?php echo htmlspecialchars($e['source']); ?></span></td>
-                <td><span class="badge <?php echo ($e['status']==='new'?'bg-warning-subtle text-warning':'bg-success-subtle text-success'); ?>"><?php echo htmlspecialchars($e['status']); ?></span></td>
+                <td><span
+                    class="badge bg-primary-subtle text-primary"><?php echo htmlspecialchars($e['source']); ?></span></td>
+                <td><span
+                    class="badge <?php echo ($e['status'] === 'new' ? 'bg-warning-subtle text-warning' : 'bg-success-subtle text-success'); ?>"><?php echo htmlspecialchars($e['status']); ?></span>
+                </td>
                 <td><?php echo htmlspecialchars($e['created_at']); ?></td>
                 <td>
-                  <a class="btn btn-sm btn-outline-secondary" href="/Software-Services/admin/enquiries.php"><i class="fa-regular fa-eye"></i></a>
-                  <button class="btn btn-sm btn-outline-danger btn-del" data-id="<?php echo (int)$e['id']; ?>"><i class="fa-regular fa-trash-can"></i></button>
+                  <a class="btn btn-sm btn-outline-secondary" href="/Software-Services/admin/enquiries.php"><i
+                      class="fa-regular fa-eye"></i></a>
+                  <button class="btn btn-sm btn-outline-danger btn-del" data-id="<?php echo (int) $e['id']; ?>"><i
+                      class="fa-regular fa-trash-can"></i></button>
                 </td>
               </tr>
             <?php endforeach; ?>
@@ -118,7 +123,9 @@
         </table>
         <div class="d-flex justify-content-between align-items-center">
           <div class="text-muted small" id="tableInfo"></div>
-          <nav><ul class="pagination pagination-sm m-0" id="tablePager"></ul></nav>
+          <nav>
+            <ul class="pagination pagination-sm m-0" id="tablePager"></ul>
+          </nav>
         </div>
       </div>
     </div>
@@ -133,30 +140,11 @@
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 <script>
-  (function() {
-    var kpis = document.querySelectorAll('.counter');
-    var obs = new IntersectionObserver(function(entries) {
-      entries.forEach(function(entry) {
-        if (entry.isIntersecting) {
-          var el = entry.target;
-          var target = parseInt(el.getAttribute('data-target') || '0', 10);
-          var cur = 0;
-          var step = Math.max(1, Math.round(target / 40));
-          var t = setInterval(function() {
-            cur += step;
-            if (cur >= target) { cur = target; clearInterval(t); }
-            el.textContent = cur;
-          }, 25);
-          obs.unobserve(el);
-        }
-      });
-    }, { threshold: .6 });
-    kpis.forEach(function(el) { obs.observe(el); });
-
+  (function () {
     var ctx1 = document.getElementById('chartEnquiries');
     if (ctx1) {
-      var m = ['Jan','Feb','Mar','Apr','May','Jun'];
-      var v = [12, 19, 7, 15, 22, <?php echo (int)$totalEnquiries; ?>];
+      var m = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'];
+      var v = [12, 19, 7, 15, 22, <?php echo (int) $totalEnquiries; ?>];
       new Chart(ctx1, {
         type: 'line',
         data: { labels: m, datasets: [{ label: 'Enquiries', data: v, tension: .35, borderColor: '#2563eb', backgroundColor: 'rgba(37,99,235,.15)', fill: true }] },
@@ -165,8 +153,8 @@
     }
     var ctx2 = document.getElementById('chartRegistrations');
     if (ctx2) {
-      var c = ['Course A','Course B','Course C','Course D'];
-      var v = [8, 12, 6, <?php echo (int)$totalRegistrations; ?>];
+      var c = ['Course A', 'Course B', 'Course C', 'Course D'];
+      var v = [8, 12, 6, <?php echo (int) $totalRegistrations; ?>];
       new Chart(ctx2, {
         type: 'bar',
         data: { labels: c, datasets: [{ label: 'Registrations', data: v, backgroundColor: 'rgba(37,99,235,.6)' }] },
@@ -176,10 +164,10 @@
     var ctx3 = document.getElementById('chartDistribution');
     if (ctx3) {
       var labels = ['IT', 'Business', 'Design', 'Other'];
-      var data = [30, 25, 20, Math.max(5, (<?php echo (int)$totalCourses; ?> - 75))];
+      var data = [30, 25, 20, Math.max(5, (<?php echo (int) $totalCourses; ?> - 75))];
       new Chart(ctx3, {
         type: 'doughnut',
-        data: { labels, datasets: [{ data, backgroundColor: ['#1f77b4','#2ca02c','#ff7f0e','#9467bd'] }] },
+        data: { labels, datasets: [{ data, backgroundColor: ['#1f77b4', '#2ca02c', '#ff7f0e', '#9467bd'] }] },
         options: { plugins: { legend: { position: 'bottom' } } }
       });
     }
@@ -195,27 +183,27 @@
         var total = rows.length;
         var pages = Math.max(1, Math.ceil(total / pageSize));
         page = Math.min(page, pages);
-        rows.forEach(function(r, i) {
-          var show = (i >= (page-1)*pageSize && i < page*pageSize);
+        rows.forEach(function (r, i) {
+          var show = (i >= (page - 1) * pageSize && i < page * pageSize);
           r.style.display = show ? '' : 'none';
         });
-        info.textContent = 'Showing ' + ((page-1)*pageSize+1) + '–' + Math.min(page*pageSize, total) + ' of ' + total;
+        info.textContent = 'Showing ' + ((page - 1) * pageSize + 1) + '–' + Math.min(page * pageSize, total) + ' of ' + total;
         pager.innerHTML = '';
-        for (var p=1; p<=pages; p++) {
+        for (var p = 1; p <= pages; p++) {
           var li = document.createElement('li');
-          li.className = 'page-item' + (p===page ? ' active' : '');
+          li.className = 'page-item' + (p === page ? ' active' : '');
           var a = document.createElement('a');
           a.className = 'page-link';
           a.href = '#';
           a.textContent = p;
-          a.addEventListener('click', function(ev) { ev.preventDefault(); page = parseInt(this.textContent,10); render(); });
+          a.addEventListener('click', function (ev) { ev.preventDefault(); page = parseInt(this.textContent, 10); render(); });
           li.appendChild(a);
           pager.appendChild(li);
         }
       }
       render();
-      table.querySelectorAll('.btn-del').forEach(function(btn) {
-        btn.addEventListener('click', function() {
+      table.querySelectorAll('.btn-del').forEach(function (btn) {
+        btn.addEventListener('click', function () {
           var id = this.getAttribute('data-id');
           if (confirm('Delete enquiry #' + id + '?')) {
             var f = document.createElement('form');

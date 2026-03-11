@@ -22,33 +22,36 @@
           </ul>
 
           <h5>Follow Us</h5>
-          <ul class="list-inline ps-0 ms-0 footer-social">
+          <ul class="list-inline ps-0 ms-0 brand-social-icons footer-social">
             <li class="list-inline-item">
-              <a href="https://www.facebook.com/profile.php?id=61587784525507" target="_blank">
+              <a href="https://www.facebook.com/profile.php?id=61587784525507" target="_blank"
+                class="social-icon facebook">
                 <i class="bi bi-facebook"></i>
               </a>
             </li>
             <li class="list-inline-item">
-              <a href="https://www.instagram.com/consynex_technologies?igsh=ZnM0Y25kOHc5bGp4" target="_blank">
+              <a href="https://www.instagram.com/consynex_technologies?igsh=ZnM0Y25kOHc5bGp4" target="_blank"
+                class="social-icon instagram">
                 <i class="bi bi-instagram"></i>
               </a>
             </li>
             <li class="list-inline-item">
-              <a href="https://twitter.com/" target="_blank">
-                <i class="bi bi-twitter"></i>
+              <a href="https://twitter.com/" target="_blank" class="social-icon twitter">
+                <i class="bi bi-twitter-x"></i>
               </a>
             </li>
             <li class="list-inline-item">
-              <a href="https://www.linkedin.com/company/consynex-tech/" target="_blank">
+              <a href="https://www.linkedin.com/company/consynex-tech/" target="_blank" class="social-icon linkedin">
                 <i class="bi bi-linkedin"></i>
               </a>
             </li>
             <li class="list-inline-item">
-              <a href="https://youtube.com/" target="_blank">
+              <a href="https://youtube.com/" target="_blank" class="social-icon youtube">
                 <i class="bi bi-youtube"></i>
               </a>
             </li>
           </ul>
+
         </div>
 
         <!-- ✅ Right Side -->
@@ -71,10 +74,9 @@
             <div class="col-lg-4 col-md-4 mt-5 mt-md-0 footer-menu">
               <h6 class="text-white mb-3">Services</h6>
               <ul class="list-unstyled w-100">
-                <li><a href="services.php">Web Development</a></li>
-                <li><a href="services.php">Mobile App Development</a></li>
-                <li><a href="services.php">UI/UX Design</a></li>
-                <li><a href="services.php">Digital Marketing</a></li>
+                <li><a href="web-development.php">Web Development</a></li>
+                <li><a href="digital-marketing.php">Digital Marketing</a></li>
+                <li><a href="services.php">Our Services</a></li>
               </ul>
             </div>
 

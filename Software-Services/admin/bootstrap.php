@@ -46,6 +46,10 @@ if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') {
 
 session_start();
 
+// Disable Browser Caching
+header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+header("Pragma: no-cache");
+
 // Security Headers
 header("X-Frame-Options: SAMEORIGIN");
 header("X-Content-Type-Options: nosniff");
@@ -92,9 +96,9 @@ function require_login(): void
         header('Location: /Software-Services/admin/login.php');
         exit;
     }
-    
-    // Session Inactivity Timeout (30 minutes)
-    if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity'] > 1800)) {
+
+    // Session Inactivity Timeout (15 minutes = 900 seconds)
+    if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity'] > 900)) {
         session_unset();
         session_destroy();
         header('Location: /Software-Services/admin/login.php?timeout=1');

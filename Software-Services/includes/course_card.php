@@ -14,10 +14,8 @@ if (!empty($rawImage)) {
     if (strpos($rawImage, 'http') === 0) {
         $imgSrc = $rawImage;
     } else {
-        // Assume path is relative to Software-Services root (e.g. 'uploads/courses/...')
-        // We prepend /Software-Services/ to make it absolute from web root
-        $path = ltrim($rawImage, '/');
-        $imgSrc = '/Software-Services/' . $path;
+        // The path is relative to the `uploads` directory, which is at the root of the `Software-Services` folder.
+        $imgSrc = 'uploads/courses/' . ltrim($rawImage, '/');
     }
 } else {
     // Default image

@@ -22,7 +22,7 @@
     <label class="form-label">Password</label>
     <div class="input-group">
       <input type="password" name="password" class="form-control" id="password" placeholder="Enter password" required>
-      <button type="button" class="btn btn-outline-secondary" id="togglePwd"><i class="bi bi-eye"></i></button>
+      <button type="button" class="btn btn-outline-secondary" id="togglePwd"><i class="fa-regular fa-eye"></i></button>
     </div>
   </div>
   <div class="d-flex justify-content-between align-items-center mb-3">
@@ -30,19 +30,19 @@
       <input class="form-check-input" type="checkbox" value="1" id="remember">
       <label class="form-check-label" for="remember">Remember me</label>
     </div>
-    <a href="#" class="text-decoration-none">Forgot password?</a>
+    <a href="/Software-Services/admin/forgot-password.php" class="text-decoration-none">Forgot password?</a>
   </div>
   <button class="btn btn-primary w-100">Secure Login</button>
 </form>
 <script>
-  (function() {
+  (function () {
     var btn = document.getElementById('togglePwd');
     var field = document.getElementById('password');
     if (btn && field) {
-      btn.addEventListener('click', function() {
+      btn.addEventListener('click', function () {
         var t = field.getAttribute('type') === 'password' ? 'text' : 'password';
         field.setAttribute('type', t);
-        btn.innerHTML = t === 'password' ? '<i class="bi bi-eye"></i>' : '<i class="bi bi-eye-slash"></i>';
+        btn.innerHTML = t === 'password' ? '<i class="fa-regular fa-eye"></i>' : '<i class="fa-regular fa-eye-slash"></i>';
       });
     }
   })();

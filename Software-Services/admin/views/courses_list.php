@@ -27,8 +27,7 @@
                         <th width="10%">Image</th>
                         <th width="20%">Course Name</th>
                         <th width="15%">Category</th>
-                        <th width="10%">Duration</th>
-                        <th width="10%">Fees</th>
+                        <th width="15%">Duration</th>
                         <th width="10%">Status</th>
                         <th width="20%">Actions</th>
                     </tr>
@@ -48,7 +47,6 @@
                                 <td class="fw-bold"><?php echo htmlspecialchars($course['course_name']); ?></td>
                                 <td><span class="badge bg-secondary"><?php echo htmlspecialchars($course['category']); ?></span></td>
                                 <td><?php echo htmlspecialchars($course['duration']); ?></td>
-                                <td>₹<?php echo htmlspecialchars($course['fees']); ?></td>
                                 <td>
                                     <?php if ($course['status'] == 1): ?>
                                         <span class="badge bg-success">Active</span>
@@ -77,7 +75,7 @@
                         <?php endforeach; ?>
                     <?php else: ?>
                         <tr>
-                            <td colspan="8" class="text-center py-5 text-muted">No courses found.</td>
+                            <td colspan="7" class="text-center py-5 text-muted">No courses found.</td>
                         </tr>
                     <?php endif; ?>
                 </tbody>

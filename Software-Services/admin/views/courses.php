@@ -21,7 +21,6 @@
       <div class="mb-2">
         <input class="form-control" type="file" name="image" accept=".jpg,.jpeg,.png,.webp">
       </div>
-      <div class="mb-2"><input class="form-control" name="fees" placeholder="Fees"></div>
       <div class="mb-2"><textarea class="form-control" name="description" placeholder="Description" rows="4"></textarea></div>
       <div class="mb-2">
         <select class="form-select" name="status">
@@ -46,7 +45,7 @@
           <div class="d-flex justify-content-between">
             <div>
               <div class="fw-bold"><?php echo htmlspecialchars($c['name']); ?></div>
-              <div class="small text-muted">Slug: <?php echo htmlspecialchars($c['slug']); ?> | Duration: <?php echo htmlspecialchars((string)$c['duration']); ?> | Level: <?php echo htmlspecialchars((string)($c['level'] ?? '')); ?> | Fees: <?php echo htmlspecialchars((string)$c['fees']); ?> | Status: <?php echo (int)$c['status'] ? 'Active' : 'Inactive'; ?> | Featured: <?php echo (int)$c['featured'] ? 'Yes' : 'No'; ?></div>
+              <div class="small text-muted">Slug: <?php echo htmlspecialchars($c['slug']); ?> | Duration: <?php echo htmlspecialchars((string)$c['duration']); ?> | Level: <?php echo htmlspecialchars((string)($c['level'] ?? '')); ?> | Status: <?php echo (int)$c['status'] ? 'Active' : 'Inactive'; ?> | Featured: <?php echo (int)$c['featured'] ? 'Yes' : 'No'; ?></div>
               <?php if (!empty($c['image_path'])): ?>
                 <div class="mt-2"><img src="<?php echo htmlspecialchars($c['image_path']); ?>" alt="" style="max-height:80px;width:auto"></div>
               <?php endif; ?>
@@ -76,7 +75,6 @@
                 </select>
               </div>
               <div class="col-md-3"><input class="form-control" type="file" name="image" accept=".jpg,.jpeg,.png,.webp"></div>
-              <div class="col-md-2"><input class="form-control" name="fees" value="<?php echo htmlspecialchars((string)$c['fees']); ?>"></div>
               <div class="col-md-12"><textarea class="form-control" name="description" rows="3"><?php echo htmlspecialchars($c['description']); ?></textarea></div>
               <div class="col-md-2">
                 <select class="form-select" name="status">

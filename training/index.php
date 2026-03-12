@@ -24,6 +24,17 @@ use TrainingApp\App\Models\Enquiry;
 // Load environment variables
 EnvLoader::load(__DIR__ . '/../../.env');
 
+// Session Security & Path Fix
+$session_path = __DIR__ . '/../sessions';
+if (!is_dir($session_path)) {
+    mkdir($session_path, 0700, true);
+}
+session_save_path($session_path);
+
+ini_set('session.cookie_httponly', '1');
+ini_set('session.use_strict_mode', '1');
+ini_set('session.cookie_samesite', 'Lax');
+
 session_start();
 
 $seg = Router::segments();

@@ -13,13 +13,28 @@ $imgSrc = '';
 if (!empty($rawImage)) {
     if (strpos($rawImage, 'http') === 0) {
         $imgSrc = $rawImage;
+    } elseif (strpos($rawImage, 'uploads/') === 0) {
+        // The path already contains 'uploads/', so use it as is.
+        $imgSrc = $rawImage;
     } else {
-        // The path is relative to the `uploads` directory, which is at the root of the `Software-Services` folder.
+        // The path is relative to the `uploads/courses` directory.
         $imgSrc = 'uploads/courses/' . ltrim($rawImage, '/');
     }
 } else {
     // Default image
     $imgSrc = '/Software-Services/images/service-icon/01.png';
+}
+
+// Check if image exists on filesystem (unless it's a remote URL)
+if (strpos($imgSrc, 'http') !== 0) {
+    $fsPath = $imgSrc;
+    if (strpos($fsPath, '/Software-Services/') === 0) {
+        $fsPath = substr($fsPath, strlen('/Software-Services/'));
+    }
+    
+    if (!file_exists(__DIR__ . '/../' . $fsPath)) {
+        $imgSrc = '/Software-Services/images/service-icon/01.png';
+    }
 }
 
 // Truncate description

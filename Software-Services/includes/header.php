@@ -4,12 +4,14 @@
 <head>
 <!-- meta tags -->
 <meta charset="utf-8">
-<meta name="keywords" content="bootstrap 5, premium, multipurpose, sass, scss, saas, software, startup, technology" />
-<meta name="description" content="HTML5 Template" />
-<meta name="author" content="www.themeht.com" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- Title -->
-<title>Consynex Technologies</title>
+
+<meta name="description" content="Consynex Technologies provides Web Development, Java Training, C and C++ Programming Training, CCTV Installation, AMC Maintenance, LAN/Wi-Fi Setup, Router Configuration, Antivirus Security Setup, Computer & Laptop Support, Data Backup and Software Installation services.">
+
+<meta name="keywords" content="Consynex Technologies, Web Development Company, Java Training Institute, C Programming Training, C++ Training, CCTV Installation Services, AMC Maintenance Services, LAN WiFi Setup, Router Configuration, IT Infrastructure Support, Computer Laptop Support, Software Installation Services, Data Backup and Recovery">
+
+<title>Consynex Technologies | Web Development, Java Training & IT Services</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <!-- favicon icon -->

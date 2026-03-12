@@ -43,14 +43,6 @@
             </div>
 
             <div class="col-md-6">
-                <label for="fees" class="form-label">Fees</label>
-                <div class="input-group">
-                    <span class="input-group-text">₹</span>
-                    <input type="text" class="form-control" id="fees" name="fees" placeholder="e.g. 15000" value="<?php echo isset($course) ? htmlspecialchars($course['fees']) : ''; ?>">
-                </div>
-            </div>
-            
-            <div class="col-md-6">
                 <label for="image" class="form-label">Course Image</label>
                 <input type="file" class="form-control" id="image" name="image" accept="image/*">
                 <?php if (isset($course['image']) && !empty($course['image'])): ?>

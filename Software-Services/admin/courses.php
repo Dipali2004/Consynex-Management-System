@@ -43,7 +43,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $category = trim($_POST['category']);
         $description = trim($_POST['description']);
         $duration = trim($_POST['duration']);
-        $fees = trim($_POST['fees']);
         $status = isset($_POST['status']) ? 1 : 0;
         
         // Image processing
@@ -65,17 +64,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 if ($id) {
                     // Update
                     if ($image) {
-                        $stmt = $pdo->prepare("UPDATE courses SET category=?, course_name=?, description=?, duration=?, fees=?, image=?, status=?, slug=?, name=?, level=? WHERE id=?");
-                        $stmt->execute([$category, $course_name, $description, $duration, $fees, $image, $status, $slug, $course_name, $category, $id]);
+                        $stmt = $pdo->prepare("UPDATE courses SET category=?, course_name=?, description=?, duration=?, image=?, status=?, slug=?, name=?, level=? WHERE id=?");
+                        $stmt->execute([$category, $course_name, $description, $duration, $image, $status, $slug, $course_name, $category, $id]);
                     } else {
-                        $stmt = $pdo->prepare("UPDATE courses SET category=?, course_name=?, description=?, duration=?, fees=?, status=?, slug=?, name=?, level=? WHERE id=?");
-                        $stmt->execute([$category, $course_name, $description, $duration, $fees, $status, $slug, $course_name, $category, $id]);
+                        $stmt = $pdo->prepare("UPDATE courses SET category=?, course_name=?, description=?, duration=?, status=?, slug=?, name=?, level=? WHERE id=?");
+                        $stmt->execute([$category, $course_name, $description, $duration, $status, $slug, $course_name, $category, $id]);
                     }
                     $msg = "Course updated successfully.";
                 } else {
                     // Create
-                    $stmt = $pdo->prepare("INSERT INTO courses (category, course_name, description, duration, fees, image, status, slug, name, level) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-                    $stmt->execute([$category, $course_name, $description, $duration, $fees, $image, $status, $slug, $course_name, $category]);
+                    $stmt = $pdo->prepare("INSERT INTO courses (category, course_name, description, duration, image, status, slug, name, level) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                    $stmt->execute([$category, $course_name, $description, $duration, $image, $status, $slug, $course_name, $category]);
                     $msg = "Course created successfully.";
                 }
                 header("Location: courses.php?msg=" . urlencode($msg));

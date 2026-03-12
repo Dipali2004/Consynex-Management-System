@@ -65,8 +65,29 @@ include("includes/header.php");
     <div class="row align-items-center">
       <div class="col-lg-6 col-md-12 mb-5 mb-lg-0">
         <div class="position-relative overflow-hidden rounded-3 shadow-lg">
-            <?php if (!empty($course['image']) && file_exists(__DIR__ . '/' . $course['image'])): ?>
-                <img class="img-fluid w-100 object-fit-cover" src="<?php echo htmlspecialchars($course['image']); ?>" alt="<?php echo htmlspecialchars($course['course_name']); ?>" style="height: 400px;">
+            <?php 
+            $rawImage = !empty($course['image']) ? $course['image'] : ($course['image_path'] ?? '');
+            $imgSrc = '';
+            if (!empty($rawImage)) {
+                if (strpos($rawImage, 'http') === 0) {
+                    $imgSrc = $rawImage;
+                } elseif (strpos($rawImage, 'uploads/') === 0) {
+                    $imgSrc = $rawImage;
+                } else {
+                    $imgSrc = 'uploads/courses/' . ltrim($rawImage, '/');
+                }
+            } else {
+                $imgSrc = '/Software-Services/images/service-icon/01.png';
+            }
+
+            // For file_exists, we need a path relative to __DIR__ or absolute filesystem path
+            $fsPath = $imgSrc;
+            if (strpos($fsPath, '/Software-Services/') === 0) {
+                $fsPath = substr($fsPath, strlen('/Software-Services/'));
+            }
+            ?>
+            <?php if (!empty($imgSrc) && (strpos($imgSrc, 'http') === 0 || file_exists(__DIR__ . '/' . $fsPath))): ?>
+                <img class="img-fluid w-100 object-fit-cover" src="<?php echo htmlspecialchars($imgSrc); ?>" alt="<?php echo htmlspecialchars($course['course_name']); ?>" style="height: 400px;">
             <?php else: ?>
                 <div class="bg-light w-100 d-flex align-items-center justify-content-center text-muted" style="height: 400px;">
                     <i class="bi bi-card-image" style="font-size: 5rem; opacity: 0.3;"></i>
@@ -81,7 +102,6 @@ include("includes/header.php");
             
             <div class="d-flex align-items-center mb-4 text-muted">
                 <span class="me-4 fs-5"><i class="bi bi-clock me-2 text-primary"></i> <?php echo htmlspecialchars($course['duration']); ?></span>
-                <span class="fs-4 fw-bold text-dark">₹<?php echo htmlspecialchars($course['fees']); ?></span>
             </div>
             
             <div class="mb-5">
